@@ -3,13 +3,14 @@ Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
 Summary(pl):	AfterStep - mened¿er okien
 Name:		AfterStep
 Version:	1.7.164
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Window Managers
 Group(pl):	X11/Zarz±dcy okien
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Source:		ftp://ftp.afterstep.org/devel/snapshots/%{name}-%{version}.tar.bz2
-Patch:		AfterStep-Wharf_maxsize.patch
+Patch0:		AfterStep-Wharf_maxsize.patch
+Patch1:		AfterStep-no_bash_fix.patch
 URL:		http://www.afterstep.org/
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -50,8 +51,9 @@ fvwm napisanym przez Roberta Nationa, a sam fvwm bazowa³ na kodzie ¼ród³owym
 mened¿era twm.
 
 %prep
-%setup -q
-%patch -p1
+%setup  -q
+%patch0 -p1
+%patch1 -p1
 
 %build
 LDFLAGS="-s"; export LDFLAGS
