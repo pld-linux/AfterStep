@@ -14,8 +14,7 @@ Source0:	ftp://ftp.afterstep.org/devel/%{name}-%{version}.%{snap}.tar.bz2
 # Source0-md5:	3a83d7630dbdde085799bf98e2fa0530
 Source1:	%{name}.RunWM
 Source3:	%{name}-xsession.desktop
-Patch0:		%{name}-Wharf_maxsize.patch
-Patch1:		%{name}-no_bash_fix.patch
+Patch0:		%{name}-no_bash_fix.patch
 URL:		http://www.afterstep.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
@@ -64,9 +63,8 @@ okien o nazwie fvwm napisanym przez Roberta Nationa, a sam fvwm
 bazowa³ na kodzie ¼ród³owym zarz±dcy okien twm.
 
 %prep
-%setup  -q
+%setup  -q -n %{name}-%{version}.%{snap}
 %patch0 -p1
-%patch1 -p1
 
 %build
 cp -f autoconf/* .
