@@ -1,13 +1,17 @@
+
+%define		snap beta4b
+
 Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep 它奴件玉它穴生□斥乓 (NeXT氘)
 Summary(pl):	AfterStep - zarz康ca okien
 Name:		AfterStep
-Version:	1.8.11
-Release:	3
+Version:	2.00
+Release:	0.%{snap}.1
 License:	GPL
 Group:		X11/Window Managers
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.afterstep.org/devel/%{name}-%{version}.%{snap}.tar.bz2
 # Source0-md5:	6d8b41b7a642105b4cafc4d3d5f12a46
 Source1:	%{name}.RunWM
 Source3:	%{name}-xsession.desktop
@@ -21,7 +25,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	sgml-tools
 Requires:	wmconfig >= 0.9.9-5
-Requires:	xinitrc >= 3.0
+Requires:	xinitrc-ng
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_wmpropsdir	/usr/share/wm-properties
