@@ -68,16 +68,17 @@ bazowa³ na kodzie ¼ród³owym mened¿era twm.
 %setup  -q
 %patch0 -p1
 %patch1 -p1
+
 %build
 cp -f autoconf/* .
 aclocal
 autoconf
-%configure2_13 \
+%configure \
 	--with-helpcommand="xterm -e man" \
 	--with-xpm \
 	--with-png \
 	--with-jpeg \
-        --enable-i18n \
+        --enable-i18n
 
 %{__make}
 sgml2html doc/afterstep.sgml
