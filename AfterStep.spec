@@ -2,10 +2,11 @@ Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
 Summary(pl):	AfterStep - mened¿er okien
 Name:		AfterStep
-Version:	1.8.0
-Release:	2
+Version:	1.8.4
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
+Group(de):	X11/Fenstermanager
 Group(es):	X11/Administraadores De Ventanas
 Group(fr):	X11/Gestionnaires De Fenêtres
 Group(pl):	X11/Zarz±dcy Okien
@@ -16,6 +17,7 @@ Source2:	%{name}.wm_style
 Patch0:		%{name}-Wharf_maxsize.patch
 Patch1:		%{name}-no_bash_fix.patch
 URL:		http://www.afterstep.org/
+BuildRequires:	sgml-tools
 BuildRequires:	XFree86-devel
 Requires:	wmconfig >= 0.9.9-5
 Requires:	xinitrc >= 3.0
@@ -64,7 +66,6 @@ bazowa³ na kodzie ¼ród³owym mened¿era twm.
 %patch1 -p1
 
 %build
-LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--with-imageloader="xv -root -quit" \
 	--with-helpcommand="xterm -e man" \
@@ -90,8 +91,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
 rm -f $RPM_BUILD_ROOT%{_bindir}/{sessreg,xpmroot}
 rm -rf $RPM_BUILD_ROOT%{_datadir}/afterstep/doc
 
-gzip -9nf UPGRADE NEW README TEAM README.RedHat doc/languages/* \
-	$RPM_BUILD_ROOT/%{_mandir}/man1/*
+gzip -9nf UPGRADE NEW README TEAM README.RedHat doc/languages/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
