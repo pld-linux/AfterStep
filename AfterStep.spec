@@ -67,7 +67,7 @@ LDFLAGS="-s"; export LDFLAGS
 	--enable-different-looknfeels \
 	--with-xpm \
 	--enable-i18n
-make
+%{__make}
 sgml2html doc/afterstep.sgml
 
 %install
