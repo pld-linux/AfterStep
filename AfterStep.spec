@@ -2,8 +2,8 @@ Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
 Summary(pl):	AfterStep - mened¿er okien
 Name:		AfterStep
-Version:	1.7.164
-Release:	2
+Version:	1.7.172
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
 Group(pl):	X11/Zarz±dcy Okien
