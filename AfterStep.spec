@@ -70,11 +70,14 @@ sgml2html doc/afterstep.sgml
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
 
 make install install.man DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT/%{_bindir}/{sessreg,xpmroot}
-rm -rf $RPM_BUILD_ROOT/%{_datadir}/afterstep/doc
+install AfterStep.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
+
+rm -f $RPM_BUILD_ROOT%{_bindir}/{sessreg,xpmroot}
+rm -rf $RPM_BUILD_ROOT%{_datadir}/afterstep/doc
 
 gzip -9nf UPGRADE NEW README TEAM README.RedHat doc/languages/* \
 	$RPM_BUILD_ROOT/%{_mandir}/man1/*
@@ -87,6 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/code doc/languages TODO *.html
 %doc {UPGRADE,NEW,README,TEAM,README.RedHat}.gz
 %attr(755,root,root) %{_bindir}/*
+%{_datadir}/gnome/wm-properties/AfterStep.desktop
 %{_datadir}/afterstep
 %{_mandir}/man1/*
 
