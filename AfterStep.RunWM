@@ -4,8 +4,12 @@
 #
 
 if [ -x /usr/bin/afterstep ] ; then
-	mkdir -p $HOME/GNUstep/Library/AfterStep
-	wmconfig --output=afterstep --directories  2>/dev/null
+	mkdir -p $HOME/GNUstep/Library/AfterStep/start/Applications
+	cp -R /usr/share/afterstep/start/[!A]* \
+	$HOME/GNUstep/Library/AfterStep/start
+	wmconfig --output=afterstep \
+	--outputdir $HOME/GNUstep/Library/AfterStep/start/Applications \
+	--directories  2>/dev/null
 	# if this works, we stop here
 	eval "exec /usr/bin/afterstep"
 else
