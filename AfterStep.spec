@@ -6,7 +6,7 @@ Version:	1.7.164
 Release:	2
 License:	GPL
 Group:		X11/Window Managers
-Group(pl):	X11/Zarz±dcy okien
+Group(pl):	X11/Zarz±dcy Okien
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Source:		ftp://ftp.afterstep.org/devel/snapshots/%{name}-%{version}.tar.bz2
 Patch0:		AfterStep-Wharf_maxsize.patch
