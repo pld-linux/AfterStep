@@ -58,8 +58,8 @@ horizontal or vertical 9. Many modules & asapps to give a good look to
 your X window station
 
 %description -l pl
-AfterStep jest kontynuacj± zarz±dcy okienek o nazwie BowMan który
-zosta³ opracowany przez Bo Yanga. BowMan bazowa³ na innym mened¿e¿e
+AfterStep jest kontynuacj± zarz±dcy okienek o nazwie BowMan, który
+zosta³ opracowany przez Bo Yanga. BowMan bazowa³ na innym mened¿erze
 okien o nazwie fvwm napisanym przez Roberta Nationa, a sam fvwm
 bazowa³ na kodzie ¼ród³owym mened¿era twm.
 
