@@ -4,7 +4,7 @@ Version:	1.7.111
 Release:	1
 Copyright:	GPL
 Group:		X11/Window Managers
-Group(pl):	X11/Zarz±dcy okien
+Group(pl):	X11/Zarz±dcy Okien
 Source:		ftp://ftp.afterstep.org/devel/snapshots/%{name}-%{version}.tar.bz2
 BuildRoot:	/tmp/%{name}-%{version}-root
 
