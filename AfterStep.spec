@@ -2,13 +2,13 @@ Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
 Summary(pl):	AfterStep - mened¿er okien
 Name:		AfterStep
-Version:	1.7.172
+Version:	1.8.0
 Release:	1
 License:	GPL
 Group:		X11/Window Managers
 Group(pl):	X11/Zarz±dcy Okien
 Vendor:		The AfterStep Team (see TEAM in docdir)
-Source:		ftp://ftp.afterstep.org/devel/snapshots/%{name}-%{version}.tar.bz2
+Source:		ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
 Patch0:		AfterStep-Wharf_maxsize.patch
 Patch1:		AfterStep-no_bash_fix.patch
 URL:		http://www.afterstep.org/
