@@ -12,6 +12,7 @@ Source:		ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
 Patch0:		AfterStep-Wharf_maxsize.patch
 Patch1:		AfterStep-no_bash_fix.patch
 URL:		http://www.afterstep.org/
+BuildRequires:	XFree86-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
