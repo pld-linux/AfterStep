@@ -74,7 +74,7 @@ sgml2html doc/afterstep.sgml
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
 
-make install install.man DESTDIR=$RPM_BUILD_ROOT
+%{__make} install install.man DESTDIR=$RPM_BUILD_ROOT
 
 install AfterStep.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
 
