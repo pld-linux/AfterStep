@@ -3,7 +3,7 @@ Summary(ja):	AfterStep 它奴件玉它穴生□斥乓 (NeXT氘)
 Summary(pl):	AfterStep - zarz康ca okien
 Name:		AfterStep
 Version:	1.8.11
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Window Managers
 Vendor:		The AfterStep Team (see TEAM in docdir)
