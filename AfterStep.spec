@@ -3,7 +3,7 @@ Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
 Summary(pl):	AfterStep - mened¿er okien
 Name:		AfterStep
 Version:	1.8.9
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
@@ -67,7 +67,7 @@ bazowa³ na kodzie ¼ród³owym mened¿era twm.
 %patch1 -p1
 
 %build
-%configure \
+%configure2_13 \
 	--with-imageloader="xv -root -quit" \
 	--with-helpcommand="xterm -e man" \
 	--disable-availability \
