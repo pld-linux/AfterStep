@@ -63,25 +63,22 @@ zosta³ opracowany przez Bo Yanga. BowMan bazowa³ na innym mened¿erze
 okien o nazwie fvwm napisanym przez Roberta Nationa, a sam fvwm
 bazowa³ na kodzie ¼ród³owym mened¿era twm.
 
+
 %prep
 %setup  -q
 %patch0 -p1
 %patch1 -p1
-
 %build
 cp -f autoconf/* .
 aclocal
 autoconf
-%configure \
-	--with-imageloader="xv -root -quit" \
+%configure2_13 \
 	--with-helpcommand="xterm -e man" \
-	--disable-availability \
-	--enable-makemenusonboot \
-	--enable-different-looknfeels \
 	--with-xpm \
 	--with-png \
 	--with-jpeg \
-	--enable-i18n
+        --enable-i18n \
+
 %{__make}
 sgml2html doc/afterstep.sgml
 
