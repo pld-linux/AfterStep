@@ -6,10 +6,6 @@ Version:	1.8.10
 Release:	1
 License:	GPL
 Group:		X11/Window Managers
-Group(de):	X11/Fenstermanager
-Group(es):	X11/Administraadores De Ventanas
-Group(fr):	X11/Gestionnaires De Fenêtres
-Group(pl):	X11/Zarz±dcy Okien
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
 Source1:	%{name}.RunWM
