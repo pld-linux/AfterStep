@@ -82,7 +82,7 @@ sgml2html doc/afterstep.sgml
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_wmpropsdir},%{_datadir}/xsessions},/etc/sysconfig/wmstyle}
+install -d $RPM_BUILD_ROOT{%{_wmpropsdir},%{_datadir}/xsessions,/etc/sysconfig/wmstyle}
 
 %{__make} install install.man DESTDIR=$RPM_BUILD_ROOT
 
