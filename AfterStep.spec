@@ -69,7 +69,7 @@ bazowa³ na kodzie ¼ród³owym mened¿era twm.
 
 %build
 cp -f autoconf/* .
-aclocal
+%{__aclocal}
 %{__autoconf}
 %configure \
 	--with-helpcommand="xterm -e man" \
