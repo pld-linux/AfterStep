@@ -59,8 +59,7 @@ your X window station
 AfterStep jest kontynuacj± zarz±dcy okienek o nazwie BowMan, który
 zosta³ opracowany przez Bo Yanga. BowMan bazowa³ na innym zarz±dcy
 okien o nazwie fvwm napisanym przez Roberta Nationa, a sam fvwm
-bazowa³ na kodzie ¼ród³owym zarz±dca okien twm.
-
+bazowa³ na kodzie ¼ród³owym zarz±dcy okien twm.
 
 %prep
 %setup  -q
