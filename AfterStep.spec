@@ -12,7 +12,7 @@ Group:		X11/Window Managers
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Source0:	ftp://ftp.afterstep.org/devel/%{name}-%{version}.%{snap}.tar.bz2
 # Source0-md5:	3a83d7630dbdde085799bf98e2fa0530
-Source1:	%{name}.RunWM
+#Source1:	%{name}.RunWM
 Source3:	%{name}-xsession.desktop
 Patch0:		%{name}-no_bash_fix.patch
 URL:		http://www.afterstep.org/
@@ -22,7 +22,7 @@ BuildRequires:	automake
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	sgml-tools
-Requires:	wmconfig >= 0.9.9-5
+#Requires:	wmconfig >= 0.9.9-5
 Requires:	xinitrc-ng
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -88,7 +88,7 @@ install -d $RPM_BUILD_ROOT{%{_wmpropsdir},%{_datadir}/xsessions,/etc/sysconfig/w
 
 install AfterStep.desktop $RPM_BUILD_ROOT%{_wmpropsdir}
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/afterstep.sh
+#install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/afterstep.sh
 install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/xsessions/AfterStep.desktop
 
 rm -f $RPM_BUILD_ROOT%{_bindir}/{sessreg,xpmroot}
@@ -101,7 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc/code doc/languages TODO *.html
 %doc UPGRADE NEW README TEAM README.RedHat doc/languages/*
-%attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
+#%attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 %attr(755,root,root) %{_bindir}/*
 %{_wmpropsdir}/AfterStep.desktop
 %{_datadir}/afterstep
