@@ -6,11 +6,13 @@ Version:	1.8.0
 Release:	1
 License:	GPL
 Group:		X11/Window Managers
+Group(es):	X11/Administraadores De Ventanas
+Group(fr):	X11/Gestionnaires De Fenêtres
 Group(pl):	X11/Zarz±dcy Okien
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
-Patch0:		AfterStep-Wharf_maxsize.patch
-Patch1:		AfterStep-no_bash_fix.patch
+Patch0:		%{name}-Wharf_maxsize.patch
+Patch1:		%{name}-no_bash_fix.patch
 URL:		http://www.afterstep.org/
 BuildRequires:	XFree86-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
