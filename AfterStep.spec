@@ -3,7 +3,7 @@ Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
 Summary(pl):	AfterStep - mened¿er okien
 Name:		AfterStep
 Version:	1.8.4
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
@@ -18,6 +18,7 @@ Patch0:		%{name}-Wharf_maxsize.patch
 Patch1:		%{name}-no_bash_fix.patch
 Patch2:		ftp://ftp.afterstep.org/stable/patches/1.8.4-01-sasha-audio_delay_mystyle_property.patch.gz
 Patch3:		ftp://ftp.afterstep.org/stable/patches/1.8.4-02-sasha-shaped_icons_menu_error.patch.gz
+Patch4:		ftp://ftp.afterstep.org/stable/patches/1.8.4-03-sasha-safemalloc_cygwin_compile.patch.gz
 URL:		http://www.afterstep.org/
 BuildRequires:	sgml-tools
 BuildRequires:	XFree86-devel
@@ -68,6 +69,7 @@ bazowa³ na kodzie ¼ród³owym mened¿era twm.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %configure \
