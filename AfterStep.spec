@@ -2,7 +2,7 @@ Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep 它奴件玉它穴生□斥乓 (NeXT氘)
 Summary(pl):	AfterStep - mened瞠r okien
 Name:		AfterStep
-Version:	1.8.10
+Version:	1.8.11
 Release:	1
 License:	GPL
 Group:		X11/Window Managers
@@ -16,6 +16,8 @@ URL:		http://www.afterstep.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
 BuildRequires:	sgml-tools
 Requires:	wmconfig >= 0.9.9-5
 Requires:	xinitrc >= 3.0
