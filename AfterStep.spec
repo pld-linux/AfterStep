@@ -1,10 +1,10 @@
 Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
-Summary(pl):	AfterStep - menad¿er okien
+Summary(pl):	AfterStep - mened¿er okien
 Name:		AfterStep
-Version:	1.7.142
+Version:	1.7.164
 Release:	1
-Copyright:	GPL
+License:	GPL
 Group:		X11/Window Managers
 Group(pl):	X11/Zarz±dcy okien
 Vendor:		The AfterStep Team (see TEAM in docdir)
@@ -44,9 +44,9 @@ Important features of AfterStep include:
 9. Many modules & asapps to give a good look to your X window station
 
 %description -l pl
-AfterStep jest kontynuacj± zarz±dcy okienek o nazwie BowMan, który zosta³
-opracowany przez Bo Yanga. BowMan bazowa³ na innym menad¿erze okien o nazwie
-fvwm, napisanym przez Roberta Nationa, a sam fvwm bazowa³ na kodzie ¼ród³owym
+AfterStep jest kontynuacj± zarz±dcy okienek o nazwie BowMan który zosta³
+opracowany przez Bo Yanga. BowMan bazowa³ na innym mened¿e¿e okien o nazwie
+fvwm napisanym przez Roberta Nationa, a sam fvwm bazowa³ na kodzie ¼ród³owym
 mened¿era twm.
 
 %prep
@@ -61,8 +61,8 @@ LDFLAGS="-s"; export LDFLAGS
 	--disable-availability \
 	--enable-makemenusonboot \
 	--enable-different-looknfeels \
-	--with-xpm 
-
+	--with-xpm \
+	--enable-i18n
 make
 sgml2html doc/afterstep.sgml
 
