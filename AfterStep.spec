@@ -4,8 +4,11 @@ Version:	1.7.111
 Release:	1
 Copyright:	GPL
 Group:		X11/Window Managers
-Group(pl):	X11/Zarz±dcy Okien
+Group(pl):	X11/Zarz±dcy okien
+Vendor:		The AfterStep Team (see TEAM in docdir)
 Source:		ftp://ftp.afterstep.org/devel/snapshots/%{name}-%{version}.tar.bz2
+Patch:		AfterStep-Wharf_maxsize.patch
+URL:		http://www.afterstep.org/
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %define		_prefix	/usr/X11R6
@@ -26,11 +29,11 @@ change the project name and move on.
 Important features of AfterStep include:
 
 1. Wharf: a free-floating application loader which can "Swallow" running
-programs and also can contain "Folders" of more applications.
+   programs and also can contain "Folders" of more applications.
 2. Gradient filled TitleBars with 5 button : help/zap, action/tasks,
-iconize/maximise, shade/stick & close/destroy buttons
+   iconize/maximise, shade/stick & close/destroy buttons
 3. Gradient filled root window PopUp menus which can be configured to
-accomodate different tastes and styles of management
+   accomodate different tastes and styles of management
 4. NEXTSTEP style icons which give a consistent look to the entire desktop
 5. Pixmapped Pager with desktop pixmmaping
 6. Easy to use look files, to share you desktop appearance with your friends
@@ -40,15 +43,17 @@ accomodate different tastes and styles of management
 
 %prep
 %setup -q
+%patch -p1
 
 %build
+LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--with-imageloader="xv -root -quit" \
 	--with-helpcommand="xterm -e man" \
 	--disable-availability \
 	--enable-makemenusonboot \
 	--enable-different-looknfeels \
-	--with-xpm
+	--with-xpm 
 
 make
 sgml2html doc/afterstep.sgml
@@ -60,8 +65,6 @@ make install install.man DESTDIR=$RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT/%{_bindir}/{sessreg,xpmroot}
 rm -rf $RPM_BUILD_ROOT/%{_datadir}/afterstep/doc
-
-strip --strip-unneeded $RPM_BUILD_ROOT/%{_bindir}/* || :
 
 gzip -9nf UPGRADE NEW README TEAM README.RedHat doc/languages/* \
 	$RPM_BUILD_ROOT/%{_mandir}/man1/*
