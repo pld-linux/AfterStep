@@ -1,6 +1,6 @@
 Summary:	AfterStep Window Manager
 Name:		AfterStep
-Version:	1.7.111
+Version:	1.7.126
 Release:	1
 Copyright:	GPL
 Group:		X11/Window Managers
