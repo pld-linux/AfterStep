@@ -1,0 +1,7 @@
+remove
+
+--disable-availability
+--enable-makemenusonboot
+--enable-different-looknfeels
+
+from %%configure2_13's options list
