@@ -25,6 +25,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
+%define		_wmpropsdir	%{_datadir}/wm-properties
 
 %description
 AfterStep is a continuation of the BowMan window manager which was
@@ -79,11 +80,11 @@ sgml2html doc/afterstep.sgml
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_datadir}/gnome/wm-properties,/etc/sysconfig/wmstyle}
+install -d $RPM_BUILD_ROOT{%{_wmpropsdir},/etc/sysconfig/wmstyle}
 
 %{__make} install install.man DESTDIR=$RPM_BUILD_ROOT
 
-install AfterStep.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
+install AfterStep.desktop $RPM_BUILD_ROOT%{_wmpropsdir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
@@ -103,6 +104,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 /etc/sysconfig/wmstyle/*.names
 %attr(755,root,root) %{_bindir}/*
-%{_datadir}/gnome/wm-properties/AfterStep.desktop
+%{_wmpropsdir}/AfterStep.desktop
 %{_datadir}/afterstep
 %{_mandir}/man1/*
