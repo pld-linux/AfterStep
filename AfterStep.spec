@@ -8,7 +8,7 @@ License:	GPL
 Group:		X11/Window Managers
 Group(pl):	X11/Zarz±dcy Okien
 Vendor:		The AfterStep Team (see TEAM in docdir)
-Source:		ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
 Patch0:		AfterStep-Wharf_maxsize.patch
 Patch1:		AfterStep-no_bash_fix.patch
 URL:		http://www.afterstep.org/
@@ -20,36 +20,37 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 AfterStep is a continuation of the BowMan window manager which was
-originally put together by Bo Yang. BowMan was based on the fvwm window
-manager, written by Robert Nation. Fvwm was based on code from twm. And so
-on... It was originally designed to emulate some of the look and feel of the
-NEXTSTEP user interface, but has since taken steps towards adding more
-useful, requested, and neat features especially in 1.4 version ! The changes
-which comprise AfterStep's personality were originally part of bowman
-development, but due to a desire to move past simple emulation and into a
-niche as its own valuable window manager, AfterStep designers decided to
-change the project name and move on.
+originally put together by Bo Yang. BowMan was based on the fvwm
+window manager, written by Robert Nation. Fvwm was based on code from
+twm. And so on... It was originally designed to emulate some of the
+look and feel of the NEXTSTEP user interface, but has since taken
+steps towards adding more useful, requested, and neat features
+especially in 1.4 version ! The changes which comprise AfterStep's
+personality were originally part of bowman development, but due to a
+desire to move past simple emulation and into a niche as its own
+valuable window manager, AfterStep designers decided to change the
+project name and move on.
 
 Important features of AfterStep include:
 
-1. Wharf: a free-floating application loader which can "Swallow" running
-   programs and also can contain "Folders" of more applications.
+1. Wharf: a free-floating application loader which can "Swallow"
+running programs and also can contain "Folders" of more applications.
 2. Gradient filled TitleBars with 5 button : help/zap, action/tasks,
-   iconize/maximise, shade/stick & close/destroy buttons
-3. Gradient filled root window PopUp menus which can be configured to
-   accomodate different tastes and styles of management
-4. NEXTSTEP style icons which give a consistent look to the entire desktop
-5. Pixmapped Pager with desktop pixmmaping
-6. Easy to use look files, to share you desktop appearance with your friends
-7. Start menu entries in a hierarchy of directories
-8. WinList : a tasklist which can be horizontal or vertical
-9. Many modules & asapps to give a good look to your X window station
+iconize/maximise, shade/stick & close/destroy buttons 3. Gradient
+filled root window PopUp menus which can be configured to accomodate
+different tastes and styles of management 4. NEXTSTEP style icons
+which give a consistent look to the entire desktop 5. Pixmapped Pager
+with desktop pixmmaping 6. Easy to use look files, to share you
+desktop appearance with your friends 7. Start menu entries in a
+hierarchy of directories 8. WinList : a tasklist which can be
+horizontal or vertical 9. Many modules & asapps to give a good look to
+your X window station
 
 %description -l pl
-AfterStep jest kontynuacj± zarz±dcy okienek o nazwie BowMan który zosta³
-opracowany przez Bo Yanga. BowMan bazowa³ na innym mened¿e¿e okien o nazwie
-fvwm napisanym przez Roberta Nationa, a sam fvwm bazowa³ na kodzie ¼ród³owym
-mened¿era twm.
+AfterStep jest kontynuacj± zarz±dcy okienek o nazwie BowMan który
+zosta³ opracowany przez Bo Yanga. BowMan bazowa³ na innym mened¿e¿e
+okien o nazwie fvwm napisanym przez Roberta Nationa, a sam fvwm
+bazowa³ na kodzie ¼ród³owym mened¿era twm.
 
 %prep
 %setup  -q
@@ -94,5 +95,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gnome/wm-properties/AfterStep.desktop
 %{_datadir}/afterstep
 %{_mandir}/man1/*
-
-%changelog
