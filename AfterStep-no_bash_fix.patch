@@ -1,0 +1,9 @@
+diff -Nru AfterStep-1.7.164/tools/importasmenu AfterStep-1.7.164.new/tools/importasmenu
+--- AfterStep-1.7.164/tools/importasmenu	Tue Jan 11 02:37:03 2000
++++ AfterStep-1.7.164.new/tools/importasmenu	Sat Jan 29 21:18:59 2000
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/bin/sh
+ 
+ if [[ "X$1" = "X" || "X$2" = "X" ]]; then
+     echo "Usage: importasmenu <foreignmenudir> <targetasmenudir>";
