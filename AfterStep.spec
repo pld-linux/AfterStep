@@ -23,7 +23,7 @@ Requires:	wmconfig >= 0.9.9-5
 Requires:	xinitrc >= 3.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_wmpropsdir	%{_datadir}/wm-properties
+%define		_wmpropsdir	/usr/share/wm-properties
 
 %description
 AfterStep is a continuation of the BowMan window manager which was
