@@ -2,7 +2,7 @@ Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep 它奴件玉它穴生□斥乓 (NeXT氘)
 Summary(pl):	AfterStep - mened瞠r okien
 Name:		AfterStep
-Version:	1.7.126
+Version:	1.7.142
 Release:	1
 Copyright:	GPL
 Group:		X11/Window Managers
@@ -13,8 +13,8 @@ Patch:		AfterStep-Wharf_maxsize.patch
 URL:		http://www.afterstep.org/
 BuildRoot:	/tmp/%{name}-%{version}-root
 
-%define		_prefix	/usr/X11R6
-%define		_mandir	/usr/X11R6/man
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 
 %description
 AfterStep is a continuation of the BowMan window manager which was
