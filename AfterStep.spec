@@ -1,4 +1,3 @@
-
 Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
 Summary(pl):	AfterStep - zarz±dca okien
@@ -61,7 +60,7 @@ okien o nazwie fvwm napisanym przez Roberta Nationa, a sam fvwm
 bazowa³ na kodzie ¼ród³owym zarz±dcy okien twm.
 
 %prep
-%setup  -q -n %{name}-%{version}
+%setup -q
 %patch0 -p1
 
 %build
@@ -82,7 +81,8 @@ sgml2html doc/afterstep.sgml
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_wmpropsdir},%{_datadir}/xsessions,/etc/sysconfig/wmstyle}
 
-%{__make} install install.man DESTDIR=$RPM_BUILD_ROOT
+%{__make} install install.man \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install AfterStep.desktop $RPM_BUILD_ROOT%{_wmpropsdir}
 
