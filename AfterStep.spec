@@ -1,3 +1,4 @@
+# TODO: sync pl desc
 Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep 它奴件玉它穴生□斥乓 (NeXT氘)
 Summary(pl):	AfterStep - zarz康ca okien
@@ -5,8 +6,8 @@ Name:		AfterStep
 Version:	2.00.02
 Release:	0.7
 License:	GPL
-Group:		X11/Window Managers
 Vendor:		The AfterStep Team (see TEAM in docdir)
+Group:		X11/Window Managers
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
 # Source0-md5:	8d6a690ddcd699adcf2cc7c1567fb9e8
 #Source1:	%{name}.RunWM
