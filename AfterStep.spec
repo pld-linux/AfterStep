@@ -8,6 +8,7 @@ License:	GPL
 Group:		X11/Window Managers
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
+# Source0-md5:	6d8b41b7a642105b4cafc4d3d5f12a46
 Source1:	%{name}.RunWM
 Source2:	%{name}.wm_style
 Patch0:		%{name}-Wharf_maxsize.patch
