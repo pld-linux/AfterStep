@@ -2,8 +2,8 @@ Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
 Summary(pl):	AfterStep - mened¿er okien
 Name:		AfterStep
-Version:	1.8.9
-Release:	2
+Version:	1.8.10
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
@@ -17,8 +17,10 @@ Source2:	%{name}.wm_style
 Patch0:		%{name}-Wharf_maxsize.patch
 Patch1:		%{name}-no_bash_fix.patch
 URL:		http://www.afterstep.org/
-BuildRequires:	sgml-tools
 BuildRequires:	XFree86-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	sgml-tools
 Requires:	wmconfig >= 0.9.9-5
 Requires:	xinitrc >= 3.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -67,13 +69,18 @@ bazowa³ na kodzie ¼ród³owym mened¿era twm.
 %patch1 -p1
 
 %build
-%configure2_13 \
+cp -f autoconf/* .
+aclocal
+autoconf
+%configure \
 	--with-imageloader="xv -root -quit" \
 	--with-helpcommand="xterm -e man" \
 	--disable-availability \
 	--enable-makemenusonboot \
 	--enable-different-looknfeels \
 	--with-xpm \
+	--with-png \
+	--with-jpeg \
 	--enable-i18n
 %{__make}
 sgml2html doc/afterstep.sgml
