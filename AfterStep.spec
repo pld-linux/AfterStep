@@ -3,7 +3,7 @@ Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
 Summary(pl):	AfterStep - mened¿er okien
 Name:		AfterStep
 Version:	1.8.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Window Managers
 Group(es):	X11/Administraadores De Ventanas
@@ -11,10 +11,14 @@ Group(fr):	X11/Gestionnaires De Fenêtres
 Group(pl):	X11/Zarz±dcy Okien
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
+Source1:	%{name}.RunWM
+Source2:	%{name}.wm_style
 Patch0:		%{name}-Wharf_maxsize.patch
 Patch1:		%{name}-no_bash_fix.patch
 URL:		http://www.afterstep.org/
 BuildRequires:	XFree86-devel
+Requires:	wmconfig >= 0.9.9-5
+Requires:	xinitrc >= 3.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -74,11 +78,14 @@ sgml2html doc/afterstep.sgml
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
+install -d $RPM_BUILD_ROOT{%{_datadir}/gnome/wm-properties,/etc/sysconfig/wmstyle}
 
 %{__make} install install.man DESTDIR=$RPM_BUILD_ROOT
 
 install AfterStep.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
+
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
 
 rm -f $RPM_BUILD_ROOT%{_bindir}/{sessreg,xpmroot}
 rm -rf $RPM_BUILD_ROOT%{_datadir}/afterstep/doc
@@ -93,6 +100,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc/code doc/languages TODO *.html
 %doc {UPGRADE,NEW,README,TEAM,README.RedHat}.gz
+%attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
+/etc/sysconfig/wmstyle/*.names
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/gnome/wm-properties/AfterStep.desktop
 %{_datadir}/afterstep
