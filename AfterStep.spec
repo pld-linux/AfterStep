@@ -95,15 +95,13 @@ install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
 rm -f $RPM_BUILD_ROOT%{_bindir}/{sessreg,xpmroot}
 rm -rf $RPM_BUILD_ROOT%{_datadir}/afterstep/doc
 
-gzip -9nf UPGRADE NEW README TEAM README.RedHat doc/languages/*
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %doc doc/code doc/languages TODO *.html
-%doc {UPGRADE,NEW,README,TEAM,README.RedHat}.gz
+%doc UPGRADE NEW README TEAM README.RedHat doc/languages/*
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 /etc/sysconfig/wmstyle/*.names
 %attr(755,root,root) %{_bindir}/*
