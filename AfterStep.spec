@@ -2,8 +2,8 @@ Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep 它奴件玉它穴生□斥乓 (NeXT氘)
 Summary(pl):	AfterStep - mened瞠r okien
 Name:		AfterStep
-Version:	1.8.8
-Release:	2
+Version:	1.8.9
+Release:	1
 License:	GPL
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
