@@ -75,7 +75,7 @@ cp -f autoconf/* .
 	--with-xpm \
 	--with-png \
 	--with-jpeg \
-        --enable-i18n
+	--enable-i18n
 
 %{__make}
 sgml2html doc/afterstep.sgml
