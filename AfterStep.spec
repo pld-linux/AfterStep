@@ -9,7 +9,7 @@ License:	GPL
 Group:		X11/Window Managers
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	3a83d7630dbdde085799bf98e2fa0530
+# Source0-md5:	8d6a690ddcd699adcf2cc7c1567fb9e8
 #Source1:	%{name}.RunWM
 Source3:	%{name}-xsession.desktop
 Patch0:		%{name}-no_bash_fix.patch
