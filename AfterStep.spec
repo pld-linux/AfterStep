@@ -1,16 +1,14 @@
 
-%define		snap beta4b
-
 Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
 Summary(pl):	AfterStep - zarz±dca okien
 Name:		AfterStep
-Version:	2.00
-Release:	0.%{snap}.1
+Version:	2.00.02
+Release:	0.7
 License:	GPL
 Group:		X11/Window Managers
 Vendor:		The AfterStep Team (see TEAM in docdir)
-Source0:	ftp://ftp.afterstep.org/devel/%{name}-%{version}.%{snap}.tar.bz2
+Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
 # Source0-md5:	3a83d7630dbdde085799bf98e2fa0530
 #Source1:	%{name}.RunWM
 Source3:	%{name}-xsession.desktop
@@ -63,7 +61,7 @@ okien o nazwie fvwm napisanym przez Roberta Nationa, a sam fvwm
 bazowa³ na kodzie ¼ród³owym zarz±dcy okien twm.
 
 %prep
-%setup  -q -n %{name}-%{version}.%{snap}
+%setup  -q -n %{name}-%{version}
 %patch0 -p1
 
 %build
