@@ -10,7 +10,6 @@ Vendor:		The AfterStep Team (see TEAM in docdir)
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
 # Source0-md5:	6d8b41b7a642105b4cafc4d3d5f12a46
 Source1:	%{name}.RunWM
-Source2:	%{name}.wm_style
 Source3:	%{name}-xsession.desktop
 Patch0:		%{name}-Wharf_maxsize.patch
 Patch1:		%{name}-no_bash_fix.patch
@@ -89,7 +88,6 @@ install -d $RPM_BUILD_ROOT{%{_wmpropsdir},%{_datadir}/xsessions,/etc/sysconfig/w
 install AfterStep.desktop $RPM_BUILD_ROOT%{_wmpropsdir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/afterstep.sh
-install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/afterstep.names
 install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/xsessions/AfterStep.desktop
 
 rm -f $RPM_BUILD_ROOT%{_bindir}/{sessreg,xpmroot}
@@ -103,7 +101,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/code doc/languages TODO *.html
 %doc UPGRADE NEW README TEAM README.RedHat doc/languages/*
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
-/etc/sysconfig/wmstyle/*.names
 %attr(755,root,root) %{_bindir}/*
 %{_wmpropsdir}/AfterStep.desktop
 %{_datadir}/afterstep
