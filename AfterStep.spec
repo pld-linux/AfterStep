@@ -1,6 +1,6 @@
 Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
-Summary(pl):	AfterStep - mened¿er okien
+Summary(pl):	AfterStep - zarz±dca okien
 Name:		AfterStep
 Version:	1.8.11
 Release:	2
@@ -57,9 +57,9 @@ your X window station
 
 %description -l pl
 AfterStep jest kontynuacj± zarz±dcy okienek o nazwie BowMan, który
-zosta³ opracowany przez Bo Yanga. BowMan bazowa³ na innym mened¿erze
+zosta³ opracowany przez Bo Yanga. BowMan bazowa³ na innym zarz±dcy
 okien o nazwie fvwm napisanym przez Roberta Nationa, a sam fvwm
-bazowa³ na kodzie ¼ród³owym mened¿era twm.
+bazowa³ na kodzie ¼ród³owym zarz±dca okien twm.
 
 
 %prep
