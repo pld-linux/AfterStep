@@ -107,3 +107,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/afterstep
 %{_datadir}/xsessions/AfterStep.desktop
 %{_mandir}/man1/*
+%{_mandir}/man3/*
