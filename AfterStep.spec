@@ -3,16 +3,17 @@ Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
 Summary(pl):	AfterStep - zarz±dca okien
 Name:		AfterStep
-Version:	2.00.02
-Release:	0.7
-License:	GPL
+Version:	2.2.3
+Release:	0.1
+License:	GPL v2+
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Group:		X11/Window Managers
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	8d6a690ddcd699adcf2cc7c1567fb9e8
+# Source0-md5:	c4dd1739a3e76599815d91f0212d1a43
 #Source1:	%{name}.RunWM
 Source3:	%{name}-xsession.desktop
 Patch0:		%{name}-no_bash_fix.patch
+Patch1:		%{name}-install_man.patch
 URL:		http://www.afterstep.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
@@ -62,6 +63,7 @@ bazowa³ na kodzie ¼ród³owym zarz±dcy okien twm.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 cp -f autoconf/* .
