@@ -1,3 +1,6 @@
+# TODO: what are man3 pages?
+# if not API docs - shouldn't be in another section?
+# if API docs - no devel files are installed (well, except perl, but AFAICS perl is not installed at all)
 Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep 它奴件玉它穴生□斥乓 (NeXT氘)
 Summary(pl):	AfterStep - zarz康ca okien
@@ -133,4 +136,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/afterstep
 %{_datadir}/xsessions/AfterStep.desktop
 %{_mandir}/man1/*
+# ???
 %{_mandir}/man3/*
