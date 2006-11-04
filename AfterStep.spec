@@ -1,12 +1,19 @@
 # TODO: what are man3 pages?
 # if not API docs - shouldn't be in another section?
 # if API docs - no devel files are installed (well, except perl, but AFAICS perl is not installed at all)
+#
+# Conditional build:
+%bcond_with	mmx	# use MMX
+#
+%ifarch pentium3 pentium4 athlon %{x8664}
+%define		with_mmx	1
+%endif
 Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã (NeXTÉ÷)
 Summary(pl):	AfterStep - zarz±dca okien
 Name:		AfterStep
 Version:	2.2.3
-Release:	0.1
+Release:	0.2
 License:	GPL v2+
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Group:		X11/Window Managers
@@ -16,6 +23,8 @@ Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
 Source3:	%{name}-xsession.desktop
 Patch0:		%{name}-no_bash_fix.patch
 Patch1:		%{name}-install_man.patch
+Patch2:		%{name}-opt.patch
+Patch3:		%{name}-link.patch
 URL:		http://www.afterstep.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
@@ -98,6 +107,8 @@ Najwa¿niejsze cechy AfterStepa obejmuj±:
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 cp -f autoconf/configure*.in .
 
@@ -105,8 +116,17 @@ cp -f autoconf/configure*.in .
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
+cd libAfterBase
+%{__autoconf}
+%{__autoheader}
+cd ../libAfterImage
+%{__autoconf}
+%{__autoheader}
+cd ..
 %configure \
+	%{!?with_mmx:--disable-mmx-optimization} \
 	--enable-i18n \
+	--enable-sharedlibs \
 	--with-gif \
 	--with-helpcommand="xterm -e man" \
 	--with-jpeg \
@@ -134,12 +154,16 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/afterstep/doc
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %doc doc/code doc/languages TODO *.html
 %doc UPGRADE NEW README TEAM README.RedHat doc/languages/*
 #%attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/libAfter*.so.*.*
 %{_wmpropsdir}/AfterStep.desktop
 %{_datadir}/afterstep
 %{_datadir}/xsessions/AfterStep.desktop
