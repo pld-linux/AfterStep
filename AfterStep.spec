@@ -17,12 +17,17 @@ Source3:	%{name}-xsession.desktop
 Patch0:		%{name}-no_bash_fix.patch
 Patch1:		%{name}-install_man.patch
 URL:		http://www.afterstep.org/
-BuildRequires:	XFree86-devel
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
+BuildRequires:	giflib-devel
+BuildRequires:	gtk+2-devel >= 1:2.0.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
+BuildRequires:	libtiff-devel
+BuildRequires:	pkgconfig
 BuildRequires:	sgml-tools
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXinerama-devel
 #Requires:	wmconfig >= 0.9.9-5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -94,16 +99,19 @@ Najwa¿niejsze cechy AfterStepa obejmuj±:
 %patch0 -p1
 %patch1 -p1
 
+cp -f autoconf/configure*.in .
+
 %build
-cp -f autoconf/* .
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %configure \
+	--enable-i18n \
+	--with-gif \
 	--with-helpcommand="xterm -e man" \
-	--with-xpm \
-	--with-png \
 	--with-jpeg \
-	--enable-i18n
+	--with-png \
+	--with-xpm
 
 %{__make}
 sgml2html doc/afterstep.sgml
