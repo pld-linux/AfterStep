@@ -1,0 +1,55 @@
+--- AfterStep-2.2.3/libAfterBase/configure.in.orig	2006-05-23 19:59:30.000000000 +0200
++++ AfterStep-2.2.3/libAfterBase/configure.in	2006-11-04 10:25:18.582773000 +0100
+@@ -159,7 +159,7 @@
+ user_ldflags=$LDFLAGS
+ 
+ if test "x$have_x" = "xyes"; then
+-  x_libs="$X_LIBS $X_EXTRA_LIBS $X_PRE_LIBS"
++  x_libs="$X_LIBS $X_EXTRA_LIBS"
+   if test "x$user_ldflags" = "x"; then
+   	full_x_libs=$x_libs
+   else
+--- AfterStep-2.2.3/libAfterImage/configure.in.orig	2006-05-23 19:59:30.000000000 +0200
++++ AfterStep-2.2.3/libAfterImage/configure.in	2006-11-04 10:25:03.885854500 +0100
+@@ -201,7 +201,7 @@
+ user_ldflags=$LDFLAGS
+ 
+ if test "x$have_x" = "xyes"; then
+-  x_libs="$X_LIBS $X_EXTRA_LIBS $X_PRE_LIBS"
++  x_libs="$X_LIBS $X_EXTRA_LIBS"
+   if test "x$user_ldflags" = "x"; then
+   	full_x_libs=$x_libs
+   else
+--- AfterStep-2.2.3/autoconf/configure.in.orig	2006-11-04 09:47:48.362143000 +0100
++++ AfterStep-2.2.3/autoconf/configure.in	2006-11-04 10:25:38.011987250 +0100
+@@ -235,7 +235,7 @@
+ 
+ user_ldflags=$LDFLAGS
+ 
+-x_libs="$X_LIBS $X_EXTRA_LIBS $X_PRE_LIBS"
++x_libs="$X_LIBS $X_EXTRA_LIBS"
+ if test "x$user_ldflags" = "x"; then
+ 	full_x_libs=$x_libs
+ else
+--- AfterStep-2.2.3/autoconf/configure.libs.in.orig	2006-11-04 09:47:48.362143000 +0100
++++ AfterStep-2.2.3/autoconf/configure.libs.in	2006-11-04 10:25:48.296630000 +0100
+@@ -174,7 +174,7 @@
+ 
+ dnl# Check for X :
+ AC_PATH_XTRA
+-x_libs="$LDFLAGS $X_LIBS $X_EXTRA_LIBS $X_PRE_LIBS"
++x_libs="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+ AC_CHECK_LIB(X11, XOpenDisplay, [x_libs="-lX11 $x_libs"],,$x_libs)
+ 
+ PATH_XTRA_CHECKED=yes
+--- AfterStep-2.2.3/libAfterImage/Makefile.in.orig	2006-08-16 20:58:41.000000000 +0200
++++ AfterStep-2.2.3/libAfterImage/Makefile.in	2006-11-04 10:28:10.389510250 +0100
+@@ -342,7 +342,7 @@
+ 
+ $(LIB_SHARED).$(LIBVER): $(LIB_OBJS) $(LIB_INCS) config.h
+ 	$(CC) -shared -Wl,-soname,$(LIB_SHARED).$(LIBVERMAJOR) -o $(LIB_SHARED).$(LIBVER) \
+-	 $(LIB_OBJS)
++	 $(LIB_OBJS) $(LIBS_AFTERIMAGE)
+ 
+ install.man:
+ 		@if [ -d doc/man ] ; then \
