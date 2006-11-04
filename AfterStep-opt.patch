@@ -1,0 +1,38 @@
+--- AfterStep-2.2.3/libAfterBase/configure.in.orig	2006-05-23 19:59:30.000000000 +0200
++++ AfterStep-2.2.3/libAfterBase/configure.in	2006-11-04 10:14:33.702470500 +0100
+@@ -140,16 +140,6 @@
+ 	AC_PATH_PROG(LDCONFIG, ldconfig, ldconfig, $PATH:/sbin:/usr/local/sbin)
+ fi
+ 
+-if test "x$enable_gdb" = "xno"; then
+-		DIRTY_CFLAGS="$CFLAGS"
+-  		CFLAGS="-O3"
+-  		for f in $DIRTY_CFLAGS; do 
+-       		if test "x$f" != "x-O2" -a "x$f" != "x-O3"; then
+-		   		CFLAGS="$CFLAGS $f"
+-			fi	 
+-  		done
+-fi
+-
+ 
+ dnl# some standard checks :
+ dnl# let's check for endiannes of our box
+--- AfterStep-2.2.3/libAfterImage/configure.in.orig	2006-05-23 19:59:30.000000000 +0200
++++ AfterStep-2.2.3/libAfterImage/configure.in	2006-11-04 10:16:22.373262000 +0100
+@@ -160,16 +160,6 @@
+ 	AC_PATH_PROG(LDCONFIG, ldconfig, ldconfig, $PATH:/sbin:/usr/local/sbin)
+ fi
+ 
+-if test "x$enable_gdb" = "xno"; then
+-		DIRTY_CFLAGS="$CFLAGS"
+-  		CFLAGS="-O3"
+-  		for f in $DIRTY_CFLAGS; do 
+-       		if test "x$f" != "x-O2" -a "x$f" != "x-O3" -a "x$f" != "x-O"; then
+-		   		CFLAGS="$CFLAGS $f"
+-			fi	 
+-  		done
+-fi
+-
+ 
+ dnl# Check for MMX :
+ if test "x$enable_mmx_optimization" = "xyes"; then
