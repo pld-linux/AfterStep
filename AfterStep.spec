@@ -12,13 +12,13 @@ Summary:	AfterStep Window Manager
 Summary(ja):	AfterStep 它奴件玉它穴生□斥乓 (NeXT氘)
 Summary(pl):	AfterStep - zarz康ca okien
 Name:		AfterStep
-Version:	2.2.3
-Release:	0.2
+Version:	2.2.4
+Release:	0.1
 License:	GPL v2+
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Group:		X11/Window Managers
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	c4dd1739a3e76599815d91f0212d1a43
+# Source0-md5:	a382ad2fd2947d26010d1ec5f6a80392
 #Source1:	%{name}.RunWM
 Source3:	%{name}-xsession.desktop
 Patch0:		%{name}-no_bash_fix.patch
@@ -169,4 +169,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/xsessions/AfterStep.desktop
 %{_mandir}/man1/*
 # ???
-%{_mandir}/man3/*
+#%%{_mandir}/man3/*
