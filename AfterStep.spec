@@ -9,8 +9,8 @@
 %define		with_mmx	1
 %endif
 Summary:	AfterStep Window Manager
-Summary(ja):	AfterStep ¥¦¥£¥ó¥É¥¦¥Ş¥Í¡¼¥¸¥ã (NeXTÉ÷)
-Summary(pl):	AfterStep - zarz±dca okien
+Summary(ja.UTF-8):   AfterStep ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒãƒ¼ã‚¸ãƒ£ (NeXTé¢¨)
+Summary(pl.UTF-8):   AfterStep - zarzÄ…dca okien
 Name:		AfterStep
 Version:	2.2.4
 Release:	0.1
@@ -73,35 +73,35 @@ Important features of AfterStep include:
 - 9. Many modules & asapps to give a good look to your X window
   station
 
-%description -l pl
-AfterStep jest kontynuacj± zarz±dcy okienek o nazwie BowMan, który
-zosta³ opracowany przez Bo Yanga. BowMan bazowa³ na innym zarz±dcy
+%description -l pl.UTF-8
+AfterStep jest kontynuacjÄ… zarzÄ…dcy okienek o nazwie BowMan, ktÃ³ry
+zostaÅ‚ opracowany przez Bo Yanga. BowMan bazowaÅ‚ na innym zarzÄ…dcy
 okien o nazwie fvwm napisanym przez Roberta Nationa, a sam fvwm
-bazowa³ na kodzie ¼ród³owym zarz±dcy okien twm. I tak dalej...
-AfterStep pocz±tkowo mia³ imitowaæ czê¶æ zachowania interfejsu
-u¿ytkownika NEXTSTEP, ale potem rozwin±³ siê w kierunku dodawania
-bardziej przydatnych, po¿±danych i przyjemnych mo¿liwo¶ci, szczególnie
-w wersji 1.4. Zmiany obejmuj±ce osobowo¶æ AfterStepa by³y pocz±tkowo
-czê¶ci± rozwoju BowMana, ale ze wzglêdu na chêæ wykroczenia poza
-prost± imitacjê do niszy samodzielnego warto¶ciowego zarz±dcy okien,
-projektanci AfterStepa zdecydowali siê zmieniæ nazwê.
+bazowaÅ‚ na kodzie ÅºrÃ³dÅ‚owym zarzÄ…dcy okien twm. I tak dalej...
+AfterStep poczÄ…tkowo miaÅ‚ imitowaÄ‡ czÄ™Å›Ä‡ zachowania interfejsu
+uÅ¼ytkownika NEXTSTEP, ale potem rozwinÄ…Å‚ siÄ™ w kierunku dodawania
+bardziej przydatnych, poÅ¼Ä…danych i przyjemnych moÅ¼liwoÅ›ci, szczegÃ³lnie
+w wersji 1.4. Zmiany obejmujÄ…ce osobowoÅ›Ä‡ AfterStepa byÅ‚y poczÄ…tkowo
+czÄ™Å›ciÄ… rozwoju BowMana, ale ze wzglÄ™du na chÄ™Ä‡ wykroczenia poza
+prostÄ… imitacjÄ™ do niszy samodzielnego wartoÅ›ciowego zarzÄ…dcy okien,
+projektanci AfterStepa zdecydowali siÄ™ zmieniÄ‡ nazwÄ™.
 
-Najwa¿niejsze cechy AfterStepa obejmuj±:
-- 1. Dok - obiekt do ³adowania aplikacji mog±cy "po³ykaæ" uruchomione
-  programy i zawieraæ "foldery" wiêkszej liczby aplikacji
-- 2. Wype³nione gradientem paski tytu³owe z 5 przyciskami:
+NajwaÅ¼niejsze cechy AfterStepa obejmujÄ…:
+- 1. Dok - obiekt do Å‚adowania aplikacji mogÄ…cy "poÅ‚ykaÄ‡" uruchomione
+  programy i zawieraÄ‡ "foldery" wiÄ™kszej liczby aplikacji
+- 2. WypeÅ‚nione gradientem paski tytuÅ‚owe z 5 przyciskami:
   pomoc/zabicie, akcja/zadania, ikona/maksymalizacja,
-  cieñ/przyklejenie oraz zamkniêcie/zniszczenie
-- 3. Wype³nione gradientem wyskakuj±ce menu w g³ównym oknie,
-  konfigurowalne aby sprostaæ ró¿nym smakom i stylom zarz±dzania
-- 4. Ikony w stylu NEXTSTEPA daj±ce spójny wygl±d ca³ego pulpitu
+  cieÅ„/przyklejenie oraz zamkniÄ™cie/zniszczenie
+- 3. WypeÅ‚nione gradientem wyskakujÄ…ce menu w gÅ‚Ã³wnym oknie,
+  konfigurowalne aby sprostaÄ‡ rÃ³Å¼nym smakom i stylom zarzÄ…dzania
+- 4. Ikony w stylu NEXTSTEPA dajÄ…ce spÃ³jny wyglÄ…d caÅ‚ego pulpitu
 - 5. Pager z pixmapami pulpitu
-- 6. £atwe w u¿yciu pliki wygl±du, dziêki którym mo¿na dzieliæ wygl±d
+- 6. Åatwe w uÅ¼yciu pliki wyglÄ…du, dziÄ™ki ktÃ³rym moÅ¼na dzieliÄ‡ wyglÄ…d
   pulpitu z kolegami
 - 7. Wpisy menu Start o hierarchii katalogowej
-- 8. WinList - pozioma lub pionowa lista zadañ
-- 9. Wiele modu³ów i aplikacji AfterStepa (asapps) daj±cych dobry
-  wygl±d stacji X Window
+- 8. WinList - pozioma lub pionowa lista zadaÅ„
+- 9. Wiele moduÅ‚Ã³w i aplikacji AfterStepa (asapps) dajÄ…cych dobry
+  wyglÄ…d stacji X Window
 
 %prep
 %setup -q
