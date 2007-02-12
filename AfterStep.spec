@@ -9,8 +9,8 @@
 %define		with_mmx	1
 %endif
 Summary:	AfterStep Window Manager
-Summary(ja.UTF-8):   AfterStep ウィンドウマネージャ (NeXT風)
-Summary(pl.UTF-8):   AfterStep - zarządca okien
+Summary(ja.UTF-8):	AfterStep ウィンドウマネージャ (NeXT風)
+Summary(pl.UTF-8):	AfterStep - zarządca okien
 Name:		AfterStep
 Version:	2.2.4
 Release:	0.1
