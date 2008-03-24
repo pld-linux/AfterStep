@@ -12,13 +12,13 @@ Summary:	AfterStep Window Manager
 Summary(ja.UTF-8):	AfterStep ウィンドウマネージャ (NeXT風)
 Summary(pl.UTF-8):	AfterStep - zarządca okien
 Name:		AfterStep
-Version:	2.2.7
+Version:	2.2.8
 Release:	0.1
 License:	GPL v2+
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Group:		X11/Window Managers
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	0a6018f7afd8aa7ac1555e9ff3944e3a
+# Source0-md5:	8734622c9cb549f5baa8b3262312db70
 #Source1:	%{name}.RunWM
 Source3:	%{name}-xsession.desktop
 Patch0:		%{name}-no_bash_fix.patch
