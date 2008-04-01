@@ -25,7 +25,7 @@ Patch0:		%{name}-no_bash_fix.patch
 Patch1:		%{name}-install_man.patch
 Patch2:		%{name}-opt.patch
 Patch3:		%{name}-link.patch
-Patch4:		%{name}-2.2.8-Pager.c.patch
+Patch4:		%{name}-Pager.patch
 URL:		http://www.afterstep.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
@@ -110,7 +110,7 @@ Najważniejsze cechy AfterStepa obejmują:
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 
+%patch4 -p0
 
 cp -f autoconf/configure*.in .
 
