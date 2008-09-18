@@ -39,9 +39,10 @@ BuildRequires:	sgml-tools
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXinerama-devel
 #Requires:	wmconfig >= 0.9.9-5
+Conflicts:	filesystem < 3.0-20
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_wmpropsdir	/usr/share/wm-properties
+%define		_wmpropsdir	/usr/share/gnome/wm-properties
 
 %description
 AfterStep is a continuation of the BowMan window manager which was
