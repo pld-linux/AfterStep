@@ -15,7 +15,6 @@ Name:		AfterStep
 Version:	2.2.9
 Release:	0.2
 License:	GPL v2+
-Vendor:		The AfterStep Team (see TEAM in docdir)
 Group:		X11/Window Managers
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
 # Source0-md5:	59d739b2416ac18201027d7cc0888c20
@@ -29,6 +28,7 @@ Patch4:		%{name}-WarpPointer.patch
 URL:		http://www.afterstep.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
+BuildRequires:	fltk-devel
 BuildRequires:	giflib-devel
 BuildRequires:	gtk+2-devel >= 1:2.0.0
 BuildRequires:	libjpeg-devel
