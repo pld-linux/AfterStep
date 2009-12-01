@@ -13,7 +13,7 @@ Summary(ja.UTF-8):	AfterStep ウィンドウマネージャ (NeXT風)
 Summary(pl.UTF-8):	AfterStep - zarządca okien
 Name:		AfterStep
 Version:	2.2.9
-Release:	0.1
+Release:	0.2
 License:	GPL v2+
 Vendor:		The AfterStep Team (see TEAM in docdir)
 Group:		X11/Window Managers
@@ -25,6 +25,7 @@ Patch0:		%{name}-no_bash_fix.patch
 Patch1:		%{name}-install_man.patch
 Patch2:		%{name}-opt.patch
 Patch3:		%{name}-link.patch
+Patch4:		%{name}-WarpPointer.patch
 URL:		http://www.afterstep.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
@@ -110,6 +111,7 @@ Najważniejsze cechy AfterStepa obejmują:
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p0
 
 cp -f autoconf/configure*.in .
 

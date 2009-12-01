@@ -1,0 +1,119 @@
+Index: NEW
+===================================================================
+RCS file: /home/cvsroot/afterstep-stable/NEW,v
+retrieving revision 1.42
+retrieving revision 1.43
+diff -u -r1.42 -r1.43
+--- NEW	2 Apr 2009 20:17:42 -0000	1.42
++++ NEW	30 Sep 2009 15:12:04 -0000	1.43
+@@ -1,3 +1,6 @@
++	* new WarpPointer feel option to make pointer warping on viewport change
++	  switcheable. Contributed by Chris Nix.
++	
+ version 2.2.9 release
+ 	* Menu  Mini Pixmaps will no longer be loaded if MenuMiniPixmaps is set 0
+ 	  in look.
+Index: libAfterConf/AfterStep.c
+===================================================================
+RCS file: /home/cvsroot/afterstep-stable/libAfterConf/AfterStep.c,v
+retrieving revision 1.29
+retrieving revision 1.30
+diff -u -r1.29 -r1.30
+--- libAfterConf/AfterStep.c	13 Jun 2008 16:32:50 -0000	1.29
++++ libAfterConf/AfterStep.c	30 Sep 2009 15:12:04 -0000	1.30
+@@ -334,6 +334,7 @@
+   {TF_NO_MYNAME_PREPENDING, "SaveUnders",10             , TT_FLAG       , FEEL_SaveUnders_ID            , NULL}, \
+   {TF_NO_MYNAME_PREPENDING, "PagingDefault",13          , TT_FLAG       , FEEL_PagingDefault_ID         , NULL}, \
+   {TF_NO_MYNAME_PREPENDING, "AutoTabThroughDesks",19    , TT_FLAG       , FEEL_AutoTabThroughDesks_ID   , NULL}, \
++  {TF_NO_MYNAME_PREPENDING, "WarpPointer",11	    	, TT_FLAG       , FEEL_WarpPointer_ID   	, NULL}, \
+   {TF_NO_MYNAME_PREPENDING, "ClickTime",9               , TT_UINTEGER   , FEEL_ClickTime_ID         	, NULL}, \
+   {TF_NO_MYNAME_PREPENDING, "OpaqueMove",10             , TT_UINTEGER   , FEEL_OpaqueMove_ID        	, NULL}, \
+   {TF_NO_MYNAME_PREPENDING, "OpaqueResize",12           , TT_UINTEGER   , FEEL_OpaqueResize_ID      	, NULL}, \
+Index: libAfterConf/Feel.c
+===================================================================
+RCS file: /home/cvsroot/afterstep-stable/libAfterConf/Feel.c,v
+retrieving revision 1.39
+retrieving revision 1.40
+diff -u -r1.39 -r1.40
+--- libAfterConf/Feel.c	21 Mar 2008 22:48:51 -0000	1.39
++++ libAfterConf/Feel.c	30 Sep 2009 15:12:04 -0000	1.40
+@@ -78,6 +78,7 @@
+      /* pageing */
+     {DoHandlePageing       , FEEL_PagingDefault_ID         , 0},
+     {AutoTabThroughDesks   , FEEL_AutoTabThroughDesks_ID   , 0},
++    {WarpPointer   	   , FEEL_WarpPointer_ID   	   , 0},
+ 
+ 	{0, 0, 0}
+ };
+Index: libAfterConf/afterconf.h
+===================================================================
+RCS file: /home/cvsroot/afterstep-stable/libAfterConf/afterconf.h,v
+retrieving revision 1.174
+retrieving revision 1.175
+diff -u -r1.174 -r1.175
+--- libAfterConf/afterconf.h	15 Jul 2009 16:13:39 -0000	1.174
++++ libAfterConf/afterconf.h	30 Sep 2009 15:12:04 -0000	1.175
+@@ -1991,9 +1991,10 @@
+ #define FEEL_Tile_ID				  	(FEEL_PLACEMENT_START_ID+2)	
+ #define FEEL_Cascade_ID				  	(FEEL_PLACEMENT_START_ID+3)	
+ #define FEEL_UnderPointer_ID	  	(FEEL_PLACEMENT_START_ID+4)	
+-#define FEEL_Manual_ID				  	(FEEL_PLACEMENT_START_ID+5)
++#define FEEL_WarpPointer_ID	  	(FEEL_PLACEMENT_START_ID+5)	
++#define FEEL_Manual_ID				  	(FEEL_PLACEMENT_START_ID+6)
+ 
+-#define FEEL_ID_END                   	(FEEL_PLACEMENT_START_ID+10)
++#define FEEL_ID_END                   	(FEEL_PLACEMENT_START_ID+11)
+ 
+ /************************************
+  * WindowBox configuration may look something like this :
+Index: libAfterStep/asfeel.h
+===================================================================
+RCS file: /home/cvsroot/afterstep-stable/libAfterStep/asfeel.h,v
+retrieving revision 1.22
+retrieving revision 1.23
+diff -u -r1.22 -r1.23
+--- libAfterStep/asfeel.h	13 Jun 2008 16:32:51 -0000	1.22
++++ libAfterStep/asfeel.h	30 Sep 2009 15:12:04 -0000	1.23
+@@ -81,7 +81,8 @@
+ 	DontAnimateBackground   = (1 << 26),
+ 	WinListHideIcons	    = (1 << 27),
+ 	AnimateDeskChange		= (1 << 28),
+-	DontCoverDesktop		= (1 << 29)	
++	DontCoverDesktop		= (1 << 29),
++	WarpPointer		= (1 << 30)	
+ }FeelFlags;
+ 
+ /* since we have too many feel flags  - we want another enum for
+Index: src/afterstep/configure.c
+===================================================================
+RCS file: /home/cvsroot/afterstep-stable/src/afterstep/configure.c,v
+retrieving revision 1.195
+retrieving revision 1.196
+diff -u -r1.195 -r1.196
+--- src/afterstep/configure.c	1 Apr 2009 21:35:09 -0000	1.195
++++ src/afterstep/configure.c	30 Sep 2009 15:12:04 -0000	1.196
+@@ -359,6 +359,7 @@
+ 	{"WinListSortOrder", SetInts, (char**)&TmpFeel.winlist_sort_order, (int *)&dummy},
+ 	{"WinListHideIcons", SetFlag2, (char**)WinListHideIcons, NULL},
+ 	{"SuppressIcons", SetFlag2, (char**)SuppressIcons, NULL},
++	{"WarpPointer", SetFlag2, (char**)WarpPointer, NULL},
+ 
+     /* look options */
+ 	/* obsolete stuff */
+Index: src/afterstep/pager.c
+===================================================================
+RCS file: /home/cvsroot/afterstep-stable/src/afterstep/pager.c,v
+retrieving revision 1.91
+retrieving revision 1.92
+diff -u -r1.91 -r1.92
+--- src/afterstep/pager.c	30 Jun 2008 18:02:09 -0000	1.91
++++ src/afterstep/pager.c	30 Sep 2009 15:12:04 -0000	1.92
+@@ -185,7 +185,7 @@
+ 			if (xroot_curr == xroot_orig && yroot_curr == yroot_orig)
+ #endif
+ /* only want to warp pointer while move-resizing, to keep size from jumping screenwhole */
+-			if (Scr.moveresize_in_progress)
++			if (Scr.moveresize_in_progress || get_flags( Scr.Feel.flags, WarpPointer))
+ 				XWarpPointer (dpy, None, Scr.Root, 0, 0, 0, 0, *xl, *yt);
+ 
+ 			MoveViewport (Scr.Vx + *delta_x, Scr.Vy + *delta_y, False);
