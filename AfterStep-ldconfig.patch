@@ -1,0 +1,24 @@
+diff -ur AfterStep-2.2.11.old/libAfterBase/Makefile.in AfterStep-2.2.11/libAfterBase/Makefile.in
+--- AfterStep-2.2.11.old/libAfterBase/Makefile.in	2007-04-20 23:10:45.000000000 +0100
++++ AfterStep-2.2.11/libAfterBase/Makefile.in	2011-04-07 14:07:04.903195085 +0100
+@@ -141,8 +141,6 @@
+ 		     echo "Unable to find $(LIBDIR) in ld.so.conf. In order to use "; \
+ 		     echo "$(LIB_SHARED), you may need to add it or set LD_LIBRARY_PATH."; \
+ 		   fi; \
+-		   echo "$(LDCONFIG)"; \
+-		   $(LDCONFIG); \
+ 		 fi \
+ 		)
+ 
+diff -ur AfterStep-2.2.11.old/libAfterImage/Makefile.in AfterStep-2.2.11/libAfterImage/Makefile.in
+--- AfterStep-2.2.11.old/libAfterImage/Makefile.in	2011-04-07 14:09:29.138132920 +0100
++++ AfterStep-2.2.11/libAfterImage/Makefile.in	2011-04-07 14:08:22.192265395 +0100
+@@ -180,8 +180,6 @@
+ 		     echo "Unable to find $(LIBDIR) in ld.so.conf. In order to use "; \
+ 		     echo "$(LIB_SHARED), you may need to add it or set LD_LIBRARY_PATH."; \
+ 		   fi; \
+-		   echo "$(LDCONFIG)"; \
+-		   $(LDCONFIG); \
+ 		 fi \
+ 		)
+ 
