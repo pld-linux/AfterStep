@@ -12,19 +12,18 @@ Summary:	AfterStep Window Manager
 Summary(ja.UTF-8):	AfterStep ウィンドウマネージャ (NeXT風)
 Summary(pl.UTF-8):	AfterStep - zarządca okien
 Name:		AfterStep
-Version:	2.2.9
+Version:	2.2.11
 Release:	0.2
 License:	GPL v2+
 Group:		X11/Window Managers
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	59d739b2416ac18201027d7cc0888c20
+# Source0-md5:	dbedd3dd4cd6bad56edcab4ee6fb4de8
 #Source1:	%{name}.RunWM
 Source3:	%{name}-xsession.desktop
 Patch0:		%{name}-no_bash_fix.patch
-Patch1:		%{name}-install_man.patch
+Patch1:		%{name}-ldconfig.patch
 Patch2:		%{name}-opt.patch
 Patch3:		%{name}-link.patch
-Patch4:		%{name}-WarpPointer.patch
 URL:		http://www.afterstep.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
@@ -111,7 +110,6 @@ Najważniejsze cechy AfterStepa obejmują:
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p0
 
 cp -f autoconf/configure*.in .
 
@@ -143,7 +141,7 @@ sgml2html doc/afterstep.sgml
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_wmpropsdir},%{_datadir}/xsessions,/etc/sysconfig/wmstyle}
 
-%{__make} install install.man \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install AfterStep.desktop $RPM_BUILD_ROOT%{_wmpropsdir}

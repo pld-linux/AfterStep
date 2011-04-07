@@ -53,3 +53,14 @@
  
  install.man:
  		@if [ -d doc/man ] ; then \
+--- AfterStep-2.2.11/libAfterBase/Makefile.in~	2011-04-07 14:11:04.140341198 +0100
++++ AfterStep-2.2.11/libAfterBase/Makefile.in	2011-04-07 14:20:00.303980335 +0100
+@@ -324,7 +324,7 @@
+ 
+ $(LIB_SHARED).$(LIBVER): $(LIB_OBJS) $(LIB_INCS)
+ 	$(CC) -shared -Wl,-soname,$(LIB_SHARED).$(LIBVERMAJOR) -o $(LIB_SHARED).$(LIBVER) \
+-	 $(USER_LD_FLAGS) $(LIBS_X) $(LIB_OBJS)
++	 $(USER_LD_FLAGS) $(LIB_OBJS) $(LIBS_X)
+ 
+ install:	install.lib
+ 
