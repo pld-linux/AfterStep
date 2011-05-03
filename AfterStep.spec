@@ -1,6 +1,3 @@
-# TODO: what are man3 pages?
-# if not API docs - shouldn't be in another section?
-# if API docs - no devel files are installed (well, except perl, but AFAICS perl is not installed at all)
 #
 # Conditional build:
 %bcond_with	mmx	# use MMX
@@ -8,12 +5,15 @@
 %ifarch pentium3 pentium4 athlon %{x8664}
 %define		with_mmx	1
 %endif
+# versions from libAfter{Base,Image}/configure.in respectively
+%define	afterbase_ver	1.14
+%define	afterimage_ver	1.20
 Summary:	AfterStep Window Manager
 Summary(ja.UTF-8):	AfterStep ウィンドウマネージャ (NeXT風)
 Summary(pl.UTF-8):	AfterStep - zarządca okien
 Name:		AfterStep
 Version:	2.2.11
-Release:	0.2
+Release:	0.3
 License:	GPL v2+
 Group:		X11/Window Managers
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
@@ -37,6 +37,8 @@ BuildRequires:	pkgconfig
 BuildRequires:	sgml-tools
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXinerama-devel
+Requires:	libAfterBase = %{afterbase_ver}-%{release}
+Requires:	libAfterImage = %{afterimage_ver}-%{release}
 #Requires:	wmconfig >= 0.9.9-5
 Conflicts:	filesystem < 3.0-20
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -104,6 +106,101 @@ Najważniejsze cechy AfterStepa obejmują:
 - 9. Wiele modułów i aplikacji AfterStepa (asapps) dających dobry
   wygląd stacji X Window
 
+%package devel
+Summary:	Development files for AfterStep libraries
+Summary(pl.UTF-8):	Pliki programistyczne bibliotek AfterStepa
+Group:		Development/Libraries
+Requires:	libAfterBase-devel = %{afterbase_ver}-%{release}
+Requires:	libAfterImage-devel = %{afterimage_ver}-%{release}
+# doesn't require main
+
+%description devel
+Header files together with miscellaneous AfterStep static libraries:
+libASGTK, libAfterConf, libAfterStep.
+
+%description devel -l pl.UTF-8
+Pliki nagłówkowe oraz różne statyczne biblioteki AfterStepa:
+libASGTK, libAfterConf, libAfterStep.
+
+%package -n libAfterBase
+Summary:	AfterStep base functions library
+Summary(pl.UTF-8):	Biblioteka podstawowych funkcji AfterStepa
+Version:	%{afterbase_ver}
+Group:		Libraries
+Conflicts:	AfterStep < 2.2.11-0.3
+
+%description -n libAfterBase
+AfterStep base functions library.
+
+%description -n libAfterBase -l pl.UTF-8
+Biblioteka podstawowych funkcji AfterStepa.
+
+%package -n libAfterBase-devel
+Summary:	Header files for AfterBase library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki AfterBase
+Version:	%{afterbase_ver}
+Group:		Development/Libraries
+Requires:	libAfterBase = %{afterbase_ver}-%{release}
+
+%description -n libAfterBase-devel
+Header files for AfterBase library.
+
+%description -n libAfterBase-devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki AfterBase.
+
+%package -n libAfterBase-static
+Summary:	Static AfterBase library
+Summary(pl.UTF-8):	Statyczna biblioteka AfterBase
+Version:	%{afterbase_ver}
+Group:		Development/Libraries
+Requires:	libAfterBase-devel = %{afterbase_ver}-%{release}
+
+%description -n libAfterBase-static
+Static AfterBase library.
+
+%description -n libAfterBase-static -l pl.UTF-8
+Statyczna biblioteka AfterBase.
+
+%package -n libAfterImage
+Summary:	AfterStep image functions library
+Summary(pl.UTF-8):	Biblioteka graficznych funkcji AfterStepa
+Version:	%{afterimage_ver}
+Group:		Libraries
+Requires:	libAfterBase = %{afterbase_ver}-%{release}
+
+%description -n libAfterImage
+AfterStep image functions library.
+
+%description -n libAfterImage -l pl.UTF-8
+Biblioteka graficznych funkcji AfterStepa.
+
+%package -n libAfterImage-devel
+Summary:	Header files for AfterImage library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki AfterImage
+Version:	%{afterimage_ver}
+Group:		Development/Libraries
+Requires:	libAfterBase-devel = %{afterbase_ver}-%{release}
+Requires:	libAfterImage = %{afterimage_ver}-%{release}
+
+%description -n libAfterImage-devel
+Header files for AfterImage library.
+
+%description -n libAfterImage-devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki AfterImage.
+
+%package -n libAfterImage-static
+Summary:	Static AfterImage library
+Summary(pl.UTF-8):	Statyczna biblioteka AfterImage
+Version:	%{afterimage_ver}
+Group:		Development/Libraries
+Requires:	libAfterImage-devel = %{afterimage_ver}-%{release}
+
+%description -n libAfterImage-static
+Static AfterImage library.
+
+%description -n libAfterImage-static -l pl.UTF-8
+Statyczna biblioteka AfterImage.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -149,25 +246,151 @@ install AfterStep.desktop $RPM_BUILD_ROOT%{_wmpropsdir}
 #install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/afterstep.sh
 install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/xsessions/AfterStep.desktop
 
-rm -f $RPM_BUILD_ROOT%{_bindir}/{sessreg,xpmroot}
-rm -rf $RPM_BUILD_ROOT%{_datadir}/afterstep/doc
+# demo programs source and comments don't belong to man3 (and mans in general)
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man3/{asflip,asgrad,asmerge,asscale,astext,astile,asview,common}.*
+
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/afterstep/doc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post	-n libAfterBase -p /sbin/ldconfig
+%postun	-n libAfterBase -p /sbin/ldconfig
+
+%post	-n libAfterImage -p /sbin/ldconfig
+%postun	-n libAfterImage -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc doc/code doc/languages TODO *.html
 %doc UPGRADE NEW README TEAM README.RedHat doc/languages/*
-#%attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/ASFileBrowser
+%attr(755,root,root) %{_bindir}/ASRun
+%attr(755,root,root) %{_bindir}/ASWallpaper
+%attr(755,root,root) %{_bindir}/Animate
+%attr(755,root,root) %{_bindir}/Arrange
+%attr(755,root,root) %{_bindir}/Banner
+%attr(755,root,root) %{_bindir}/GWCommand
+%attr(755,root,root) %{_bindir}/Ident
+%attr(755,root,root) %{_bindir}/MonitorWharf
+%attr(755,root,root) %{_bindir}/Pager
+%attr(755,root,root) %{_bindir}/PrintDesktopEntries
+%attr(755,root,root) %{_bindir}/Wharf
+%attr(755,root,root) %{_bindir}/WinCommand
+%attr(755,root,root) %{_bindir}/WinList
+%attr(755,root,root) %{_bindir}/WinTabs
+%attr(755,root,root) %{_bindir}/Xpm2Jpg
+%attr(755,root,root) %{_bindir}/afterstep
+%attr(755,root,root) %{_bindir}/afterstepdoc
+%attr(755,root,root) %{_bindir}/ascolor
+%attr(755,root,root) %{_bindir}/ascommand.pl
+%attr(755,root,root) %{_bindir}/importasmenu
+%attr(755,root,root) %{_bindir}/installastheme.pl
+%attr(755,root,root) %{_bindir}/makeastheme.pl
+%attr(755,root,root) %{_bindir}/postcard.sh
 %attr(755,root,root) %{_libdir}/libAfter*.so.*.*
 %{_wmpropsdir}/AfterStep.desktop
+#%attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 %{_datadir}/afterstep
 %{_datadir}/xsessions/AfterStep.desktop
-%{_mandir}/man1/*
-# ???
-#%%{_mandir}/man3/*
+%{_mandir}/man1/ASDatabase.1x*
+%{_mandir}/man1/ASDatabaseEntry.1x*
+%{_mandir}/man1/AfterStep.1x*
+%{_mandir}/man1/Align.1x*
+%{_mandir}/man1/Animate.1x*
+%{_mandir}/man1/AnimateTypes.1x*
+%{_mandir}/man1/Arrange.1x*
+%{_mandir}/man1/AutoExec.1x*
+%{_mandir}/man1/BalloonContents.1x*
+%{_mandir}/man1/Base.1x*
+%{_mandir}/man1/Bevel.1x*
+%{_mandir}/man1/ColorScheme.1x*
+%{_mandir}/man1/Feel.1x*
+%{_mandir}/man1/FeelWindowBox.1x*
+%{_mandir}/man1/Functions.1x*
+%{_mandir}/man1/Gravity.1x*
+%{_mandir}/man1/Look.1x*
+%{_mandir}/man1/MyBackground.1x*
+%{_mandir}/man1/MyFrame.1x*
+%{_mandir}/man1/MyStyle.1x*
+%{_mandir}/man1/Pager.1x*
+%{_mandir}/man1/PagerDecorations.1x*
+%{_mandir}/man1/Placement.1x*
+%{_mandir}/man1/Sound.1x*
+%{_mandir}/man1/SoundEvents.1x*
+%{_mandir}/man1/SupportedHints.1x*
+%{_mandir}/man1/TbarLayout.1x*
+%{_mandir}/man1/Wharf.1x*
+%{_mandir}/man1/WharfFolders.1x*
+%{_mandir}/man1/WharfSounds.1x*
+%{_mandir}/man1/WinCommand.1x*
+%{_mandir}/man1/WinList.1x*
+%{_mandir}/man1/WinTabs.1x*
+%{_mandir}/man1/afterstep_faq.1x*
+%{_mandir}/man1/asimagexml.1x*
+
+%files devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/afterstep-config
+%attr(755,root,root) %{_bindir}/asgtk-config
+%{_libdir}/libASGTK.a
+%{_libdir}/libAfterConf.a
+%{_libdir}/libAfterStep.a
+%{_includedir}/libASGTK
+%{_includedir}/libAfterConf
+%{_includedir}/libAfterStep
+
+%files -n libAfterBase
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libAfterBase.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libAfterBase.so.0
+
+%files -n libAfterBase-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libAfterBase.so
+%{_includedir}/libAfterBase
+
+%files -n libAfterBase-static
+%defattr(644,root,root,755)
+%{_libdir}/libAfterBase.a
+
+%files -n libAfterImage
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/ascheckttf
+%attr(755,root,root) %{_bindir}/ascompose
+%attr(755,root,root) %{_bindir}/asflip
+%attr(755,root,root) %{_bindir}/asgrad
+%attr(755,root,root) %{_bindir}/asi18n
+%attr(755,root,root) %{_bindir}/asmerge
+%attr(755,root,root) %{_bindir}/asscale
+%attr(755,root,root) %{_bindir}/astext
+%attr(755,root,root) %{_bindir}/astile
+%attr(755,root,root) %{_bindir}/asvector
+%attr(755,root,root) %{_bindir}/asview
+%attr(755,root,root) %{_libdir}/libAfterImage.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libAfterImage.so.0
+
+%files -n libAfterImage-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/afterimage-config
+%attr(755,root,root) %{_bindir}/afterimage-libs
+%attr(755,root,root) %{_libdir}/libAfterImage.so
+%{_includedir}/libAfterImage
+%{_mandir}/man3/afterimage.3x*
+%{_mandir}/man3/ascmap.3x*
+%{_mandir}/man3/ascompose.3x*
+%{_mandir}/man3/asfont.3x*
+%{_mandir}/man3/asimage.3x*
+%{_mandir}/man3/asimagexml.3x*
+%{_mandir}/man3/asvisual.3x*
+%{_mandir}/man3/blender.3x*
+%{_mandir}/man3/char2uni.3x*
+%{_mandir}/man3/export.3x*
+%{_mandir}/man3/imencdec.3x*
+%{_mandir}/man3/import.3x*
+%{_mandir}/man3/transform.3x*
+%{_mandir}/man3/ximage.3x*
+
+%files -n libAfterImage-static
+%defattr(644,root,root,755)
+%{_libdir}/libAfterImage.a
