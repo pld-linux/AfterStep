@@ -27,13 +27,18 @@ Patch3:		%{name}-link.patch
 URL:		http://www.afterstep.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
+BuildRequires:	dbus-devel
 BuildRequires:	fltk-devel
+BuildRequires:	freetype-devel >= 2.0
+BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	giflib-devel
 BuildRequires:	gtk+2-devel >= 1:2.0.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
+BuildRequires:	librsvg-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	pkgconfig
+BuildRequires:	readline-devel
 BuildRequires:	sgml-tools
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXinerama-devel
@@ -141,6 +146,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki AfterBase
 Version:	%{afterbase_ver}
 Group:		Development/Libraries
 Requires:	libAfterBase = %{afterbase_ver}-%{release}
+Requires:	xorg-lib-libX11-devel
 
 %description -n libAfterBase-devel
 Header files for AfterBase library.
@@ -181,6 +187,14 @@ Version:	%{afterimage_ver}
 Group:		Development/Libraries
 Requires:	libAfterBase-devel = %{afterbase_ver}-%{release}
 Requires:	libAfterImage = %{afterimage_ver}-%{release}
+Requires:	freetype-devel >= 2.0
+Requires:	gdk-pixbuf2-devel >= 2.0
+Requires:	giflib-devel
+Requires:	libjpeg-devel
+Requires:	libpng-devel
+Requires:	librsvg-devel
+Requires:	libtiff-devel
+Requires:	xorg-lib-libXext-devel
 
 %description -n libAfterImage-devel
 Header files for AfterImage library.
