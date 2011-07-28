@@ -1,6 +1,7 @@
 #
 # Conditional build:
-%bcond_with	mmx	# use MMX
+%bcond_with	mmx		# use MMX
+%bcond_with	gnome2		# build with support for GNOME2 wm-properties
 #
 %ifarch pentium3 pentium4 athlon %{x8664}
 %define		with_mmx	1
@@ -255,7 +256,7 @@ install -d $RPM_BUILD_ROOT{%{_wmpropsdir},%{_datadir}/xsessions,/etc/sysconfig/w
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install AfterStep.desktop $RPM_BUILD_ROOT%{_wmpropsdir}
+%{?with_gnome2:install AfterStep.desktop $RPM_BUILD_ROOT%{_wmpropsdir}}
 
 #install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/afterstep.sh
 install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/xsessions/AfterStep.desktop
@@ -303,7 +304,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/makeastheme.pl
 %attr(755,root,root) %{_bindir}/postcard.sh
 %attr(755,root,root) %{_libdir}/libAfter*.so.*.*
-%{_wmpropsdir}/AfterStep.desktop
+%{?with_gnome2:%{_wmpropsdir}/AfterStep.desktop}
 #%attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 %{_datadir}/afterstep
 %{_datadir}/xsessions/AfterStep.desktop
