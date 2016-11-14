@@ -257,7 +257,7 @@ sgml2html doc/afterstep.sgml
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_wmpropsdir},%{_datadir}/xsessions,/etc/sysconfig/wmstyle}
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{?with_gnome2:install AfterStep.desktop $RPM_BUILD_ROOT%{_wmpropsdir}}
