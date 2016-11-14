@@ -1,0 +1,86 @@
+diff -ur AfterStep-2.2.11/libAfterBase/asvector.c AfterStep-2.2.11.new/libAfterBase/asvector.c
+--- AfterStep-2.2.11/libAfterBase/asvector.c	2008-12-02 23:35:37.000000000 +0100
++++ AfterStep-2.2.11.new/libAfterBase/asvector.c	2016-11-14 03:08:00.612801550 +0100
+@@ -126,7 +126,7 @@
+ 
+ /* finds index of the first element in the vector that is exactly matching specifyed
+  * data */
+-inline size_t vector_find_data( ASVector *v, void *data )
++extern inline size_t vector_find_data( ASVector *v, void *data )
+ {
+     register int i ;
+     /* word copying is usually faster then raw memory copying */
+diff -ur AfterStep-2.2.11/libAfterBase/parse.c AfterStep-2.2.11.new/libAfterBase/parse.c
+--- AfterStep-2.2.11/libAfterBase/parse.c	2009-02-12 00:32:02.000000000 +0100
++++ AfterStep-2.2.11.new/libAfterBase/parse.c	2016-11-14 03:06:32.054859699 +0100
+@@ -1027,7 +1027,7 @@
+ 
+ static char _as_hex_to_char_table[] = "0123456789ABCDEF";
+ 
+-inline int
++extern inline int
+ unsigned_int2buffer_end (char *buffer, int buffer_size, unsigned int val)
+ {
+ 	int i = buffer_size-1 ; 
+diff -ur AfterStep-2.2.11/libAfterStep/functions.c AfterStep-2.2.11.new/libAfterStep/functions.c
+--- AfterStep-2.2.11/libAfterStep/functions.c	2009-12-11 23:38:48.000000000 +0100
++++ AfterStep-2.2.11.new/libAfterStep/functions.c	2016-11-14 03:04:31.641924138 +0100
+@@ -314,7 +314,7 @@
+     }
+ }
+ 
+-inline FunctionData *
++extern inline FunctionData *
+ create_named_function( int func, char *name)
+ {
+     FunctionData *fdata = safecalloc( 1, sizeof(FunctionData) );
+diff -ur AfterStep-2.2.11/libAfterStep/mylook.c AfterStep-2.2.11.new/libAfterStep/mylook.c
+--- AfterStep-2.2.11/libAfterStep/mylook.c	2008-01-10 00:23:13.000000000 +0100
++++ AfterStep-2.2.11.new/libAfterStep/mylook.c	2016-11-14 03:10:59.618805004 +0100
+@@ -861,7 +861,7 @@
+     return NULL;
+ }
+ 
+-inline MyDesktopConfig *
++extern inline MyDesktopConfig *
+ mylook_get_desk_config(MyLook *look, long desk)
+ {
+     if( look )
+@@ -875,7 +875,7 @@
+ }
+ 
+ 
+-inline MyBackground *
++extern inline MyBackground *
+ mylook_get_desk_back(MyLook *look, long desk)
+ {
+ 	MyBackground *myback = NULL ;
+@@ -902,7 +902,7 @@
+ }
+ 
+ 
+-inline MyBackground *
++extern inline MyBackground *
+ mylook_get_back(MyLook *look, char *name)
+ {
+     ASHashData hdata = {0};
+diff -ur AfterStep-2.2.11/src/afterstep/misc.c AfterStep-2.2.11.new/src/afterstep/misc.c
+--- AfterStep-2.2.11/src/afterstep/misc.c	2005-04-01 18:36:57.000000000 +0200
++++ AfterStep-2.2.11.new/src/afterstep/misc.c	2016-11-14 03:09:49.125128119 +0100
+@@ -32,14 +32,14 @@
+ /****************************************************************************/
+ /* window management specifics - button ungrabbing convinience functions:   */
+ /****************************************************************************/
+-inline void
++extern inline void
+ ungrab_window_buttons( Window w )
+ {
+ 	LOCAL_DEBUG_OUT( "w = %lX", w );
+     XUngrabButton (dpy, AnyButton, AnyModifier, w);
+ }
+ 
+-inline void
++extern inline void
+ ungrab_window_keys (Window w )
+ {
+     XUngrabKey (dpy, AnyKey, AnyModifier, w);

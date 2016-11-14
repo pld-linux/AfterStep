@@ -26,6 +26,7 @@ Patch1:		%{name}-ldconfig.patch
 Patch2:		%{name}-opt.patch
 Patch3:		%{name}-link.patch
 Patch4:		%{name}-libpng-1.5.patch
+Patch5:		%{name}-inline.patch
 URL:		http://www.afterstep.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
@@ -224,6 +225,7 @@ Statyczna biblioteka AfterImage.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 cp -f autoconf/configure*.in .
 
