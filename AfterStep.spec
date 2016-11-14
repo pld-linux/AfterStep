@@ -307,7 +307,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/installastheme.pl
 %attr(755,root,root) %{_bindir}/makeastheme.pl
 %attr(755,root,root) %{_bindir}/postcard.sh
-%attr(755,root,root) %{_libdir}/libAfter*.so.*.*
 %{?with_gnome2:%{_wmpropsdir}/AfterStep.desktop}
 #%attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 %{_datadir}/afterstep
