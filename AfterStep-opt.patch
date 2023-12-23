@@ -17,9 +17,31 @@
  
  dnl# some standard checks :
  dnl# let's check for endiannes of our box
---- AfterStep-2.2.3/libAfterImage/configure.in.orig	2006-05-23 19:59:30.000000000 +0200
-+++ AfterStep-2.2.3/libAfterImage/configure.in	2006-11-04 10:16:22.373262000 +0100
-@@ -160,16 +160,6 @@
+--- afterstep-devel-2.2.12/libAfterImage/configure.in.orig	2023-12-20 21:45:22.670251489 +0100
++++ afterstep-devel-2.2.12/libAfterImage/configure.in	2023-12-20 21:54:02.670767738 +0100
+@@ -160,19 +160,8 @@ else
+ dnl# we are alone - have to do all the checks ourselves :
+ 	dnl# Add -fPIC for IA64 compilation
+ 
+-	dnl# Add -g
+-	if test "x$enable_gdb" = "xyes"; then
+-  		if ! test -n "`echo $CFLAGS' ' | grep '\-g ' 2> /dev/null`" ; then
+-			CFLAGS="$CFLAGS -g -w"
+-  		fi
+-	else
+-  		DIRTY_CFLAGS="$CFLAGS"
+-  		CFLAGS="-DNO_DEBUG_OUTPUT"
+-  		for f in $DIRTY_CFLAGS; do 
+-        		if test "x$f" != "x-g"; then
+-	   		CFLAGS="$CFLAGS $f"
+-			fi	 
+-  		done
++	if test "x$enable_gdb" != "xyes"; then
++  		CFLAGS="$CFLAGS -DNO_DEBUG_OUTPUT"
+ 	fi
+ 	dnl# Add -pg
+ 	if test "x$enable_gprof" = "xyes"; then
+@@ -202,15 +191,6 @@ dnl# we are alone - have to do all the c
  	AC_PATH_PROG(LDCONFIG, ldconfig, ldconfig, $PATH:/sbin:/usr/local/sbin)
  fi
  
@@ -32,7 +54,6 @@
 -			fi	 
 -  		done
 -fi
--
  
- dnl# Check for MMX :
- if test "x$enable_mmx_optimization" = "xyes"; then
+ 
+ MMX_CFLAGS="-mmmx -Winline --param inline-unit-growth=10000 --param large-function-growth=10000"

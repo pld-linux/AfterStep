@@ -1,0 +1,33 @@
+--- afterstep-devel-2.2.12/libAfterBase/Makefile.in.orig	2023-12-21 18:11:20.858419275 +0100
++++ afterstep-devel-2.2.12/libAfterBase/Makefile.in	2023-12-21 19:25:37.880940179 +0100
+@@ -58,7 +58,7 @@ CCFLAGS         = @CFLAGS@
+ EXTRA_DEFINES	= @DEFINE_XLOCALE@
+ 
+ RANLIB		= @RANLIB@
+-AR		= ar clq
++AR		= ar cq
+ CP		= @CP@
+ MV		= @MV@
+ RM		= @RM@
+--- afterstep-devel-2.2.12/libAfterImage/Makefile.in.orig	2023-12-21 19:26:43.370585391 +0100
++++ afterstep-devel-2.2.12/libAfterImage/Makefile.in	2023-12-21 20:35:05.758360850 +0100
+@@ -76,7 +76,7 @@ CCFLAGS         = @CFLAGS@  @MMX_CFLAGS@
+ EXTRA_DEFINES	= @DEFINE_XLOCALE@
+ 
+ RANLIB		= @RANLIB@
+-AR		= ar clq
++AR		= ar cq
+ CP		= @CP@
+ MV		= @MV@
+ RM		= @RM@
+--- afterstep-devel-2.2.12/autoconf/Makefile.defines.in.orig	2013-05-01 15:34:11.000000000 +0200
++++ afterstep-devel-2.2.12/autoconf/Makefile.defines.in	2023-12-21 20:39:29.353599499 +0100
+@@ -9,7 +9,7 @@ CCFLAGS         = @CFLAGS@
+ EXTRA_DEFINES	= 
+ 
+ RANLIB		= @RANLIB@
+-AR		= ar clq
++AR		= ar cq
+ CP		= @CP@
+ MV		= @MV@
+ RM		= @RM@

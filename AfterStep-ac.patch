@@ -1,0 +1,16 @@
+--- afterstep-devel-2.2.12/autoconf/configure.in.orig	2023-12-21 13:59:30.463612638 +0100
++++ afterstep-devel-2.2.12/autoconf/configure.in	2023-12-21 18:10:14.268780022 +0100
+@@ -655,10 +655,10 @@ else
+ 			CLEAN_GIOLIB_CFLAGS=
+ 
+ 			AC_DEFINE(HAVE_GIOLIB,1,GIOLIB v.2.0 or higher is available )
+-			gio_saved_cflags=$CFLAGS
+-			export CFLAGS="$CFLAGS $GIOLIB_CFLAGS"
++			gio_saved_cflags="$CFLAGS"
++			CFLAGS="$CFLAGS $GIOLIB_CFLAGS"
+ 			AC_CHECK_TYPES([GSettings],[],[],[[#include "gio/gio.h"]])
+-			export CFLAGS=$gio_saved_cflags
++			CFLAGS="$gio_saved_cflags"
+ 
+ 			present_libs="$LDFLAGS $LIBS $x_libs $AFTERIMAGE_LIBS";
+ 			for l in `echo "$GIOLIB_LIBS"`; do

@@ -2,10 +2,12 @@
 # Conditional build:
 %bcond_with	mmx		# use MMX
 %bcond_with	gnome2		# build with support for GNOME2 wm-properties
+%bcond_without	opengl		# GLX support
 #
 %ifarch pentium3 pentium4 athlon %{x8664}
 %define		with_mmx	1
 %endif
+%define	afterstep_ver	2.2.12
 # versions from libAfter{Base,Image}/configure.in respectively
 %define	afterbase_ver	1.14
 %define	afterimage_ver	1.20
@@ -13,36 +15,42 @@ Summary:	AfterStep Window Manager
 Summary(ja.UTF-8):	AfterStep ウィンドウマネージャ (NeXT風)
 Summary(pl.UTF-8):	AfterStep - zarządca okien
 Name:		AfterStep
-Version:	2.2.11
-Release:	2
+Version:	%{afterstep_ver}
+Release:	1
 License:	GPL v2+
 Group:		X11/Window Managers
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	dbedd3dd4cd6bad56edcab4ee6fb4de8
+# Source0-md5:	a3ab1a878270998d420bb2a5ca15801b
 #Source1:	%{name}.RunWM
 Source3:	%{name}-xsession.desktop
 Patch0:		%{name}-no_bash_fix.patch
 Patch1:		%{name}-ldconfig.patch
 Patch2:		%{name}-opt.patch
 Patch3:		%{name}-link.patch
-Patch4:		%{name}-libpng-1.5.patch
+Patch4:		%{name}-ac.patch
 Patch5:		%{name}-inline.patch
+Patch6:		%{name}-ar.patch
 URL:		http://www.afterstep.org/
+%{?with_opengl:BuildRequires:	OpenGL-devel}
+BuildRequires:	alsa-lib-devel >= 0.9
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
-BuildRequires:	dbus-devel
+BuildRequires:	dbus-devel >= 0.22
 BuildRequires:	fltk-devel
 BuildRequires:	freetype-devel >= 2.0
 BuildRequires:	gdk-pixbuf2-devel >= 2.0
 BuildRequires:	giflib-devel
+BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk+2-devel >= 1:2.0.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-BuildRequires:	librsvg-devel
+BuildRequires:	librsvg-devel >= 2.0.0
 BuildRequires:	libtiff-devel
+BuildRequires:	ncurses-devel
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	sgml-tools
+BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXinerama-devel
 Requires:	libAfterBase = %{afterbase_ver}-%{release}
@@ -195,7 +203,7 @@ Requires:	gdk-pixbuf2-devel >= 2.0
 Requires:	giflib-devel
 Requires:	libjpeg-devel
 Requires:	libpng-devel
-Requires:	librsvg-devel
+Requires:	librsvg-devel >= 2.0.0
 Requires:	libtiff-devel
 Requires:	xorg-lib-libXext-devel
 
@@ -219,20 +227,26 @@ Static AfterImage library.
 Statyczna biblioteka AfterImage.
 
 %prep
-%setup -q
+%setup -q -n afterstep-devel-%{afterstep_ver}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
-cp -f autoconf/configure*.in .
+#cp -f autoconf/configure*.in .
 
 %build
+cd autoconf
 %{__aclocal}
-%{__autoconf}
-%{__autoheader}
+cd ..
+%{__autoconf} -I autoconf autoconf/configure.in > autoconf/configure
+%{__autoconf} -I autoconf autoconf/configure.libs.in > autoconf/configure.libs
+chmod 755 autoconf/configure autoconf/configure.libs
+%{__mv} autoconf/configure autoconf/configure.libs .
+%{__autoheader} autoconf/configure.in
 cd libAfterBase
 %{__autoconf}
 %{__autoheader}
@@ -242,6 +256,7 @@ cd ../libAfterImage
 cd ..
 %configure \
 	%{!?with_mmx:--disable-mmx-optimization} \
+	%{?with_opengl:--enable-glx} \
 	--enable-i18n \
 	--enable-sharedlibs \
 	--with-gif \
@@ -250,20 +265,23 @@ cd ..
 	--with-png \
 	--with-xpm
 
-%{__make}
+%{__make} -j1
+
 sgml2html doc/afterstep.sgml
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_wmpropsdir},%{_datadir}/xsessions,/etc/sysconfig/wmstyle}
+install -d $RPM_BUILD_ROOT{%{_datadir}/xsessions,/etc/sysconfig/wmstyle}
+%if %{with gnome2}
+# AfterStep.desktop is installed here if dir exists
+install -d $RPM_BUILD_ROOT%{_wmpropsdir}
+%endif
 
 %{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{?with_gnome2:install AfterStep.desktop $RPM_BUILD_ROOT%{_wmpropsdir}}
-
-#install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/afterstep.sh
-install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/xsessions/AfterStep.desktop
+#cp -p %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/afterstep.sh
+cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/xsessions/AfterStep.desktop
 
 # demo programs source and comments don't belong to man3 (and mans in general)
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/man3/{asflip,asgrad,asmerge,asscale,astext,astile,asview,common}.*
@@ -281,9 +299,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/code doc/languages TODO *.html
-%doc UPGRADE NEW README TEAM README.RedHat doc/languages/*
+%doc COPYRIGHT COPYRIGHT.OLD ChangeLog NEW NEW.1.x README TEAM TODO afterstep*.html doc/languages/README.*
 %attr(755,root,root) %{_bindir}/ASFileBrowser
+%attr(755,root,root) %{_bindir}/ASMount
 %attr(755,root,root) %{_bindir}/ASRun
 %attr(755,root,root) %{_bindir}/ASWallpaper
 %attr(755,root,root) %{_bindir}/Animate
