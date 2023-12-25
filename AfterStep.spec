@@ -10,13 +10,13 @@
 %define	afterstep_ver	2.2.12
 # versions from libAfter{Base,Image}/configure.in respectively
 %define	afterbase_ver	1.14
-%define	afterimage_ver	1.20
+%define	afterimage_ver	1.21
 Summary:	AfterStep Window Manager
 Summary(ja.UTF-8):	AfterStep ウィンドウマネージャ (NeXT風)
 Summary(pl.UTF-8):	AfterStep - zarządca okien
 Name:		AfterStep
 Version:	%{afterstep_ver}
-Release:	1
+Release:	3
 License:	GPL v2+
 Group:		X11/Window Managers
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
