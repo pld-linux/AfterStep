@@ -1,7 +1,7 @@
 #
 # Conditional build:
-%bcond_with	mmx		# use MMX
-%bcond_with	gnome2		# build with support for GNOME2 wm-properties
+%bcond_with	mmx		# MMX instructions
+%bcond_with	gnome2		# GNOME2 wm-properties support
 %bcond_without	opengl		# GLX support
 #
 %ifarch pentium3 pentium4 athlon %{x8664}
@@ -16,7 +16,7 @@ Summary(ja.UTF-8):	AfterStep ウィンドウマネージャ (NeXT風)
 Summary(pl.UTF-8):	AfterStep - zarządca okien
 Name:		AfterStep
 Version:	%{afterstep_ver}
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		X11/Window Managers
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
@@ -30,6 +30,7 @@ Patch3:		%{name}-link.patch
 Patch4:		%{name}-ac.patch
 Patch5:		%{name}-inline.patch
 Patch6:		%{name}-ar.patch
+Patch7:		%{name}-includes.patch
 URL:		http://www.afterstep.org/
 %{?with_opengl:BuildRequires:	OpenGL-devel}
 BuildRequires:	alsa-lib-devel >= 0.9
@@ -235,6 +236,7 @@ Statyczna biblioteka AfterImage.
 %patch -P4 -p1
 %patch -P5 -p1
 %patch -P6 -p1
+%patch -P7 -p1
 
 #cp -f autoconf/configure*.in .
 
@@ -379,11 +381,11 @@ rm -rf $RPM_BUILD_ROOT
 %files -n libAfterBase
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libAfterBase.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libAfterBase.so.0
+%ghost %{_libdir}/libAfterBase.so.0
 
 %files -n libAfterBase-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libAfterBase.so
+%{_libdir}/libAfterBase.so
 %{_includedir}/libAfterBase
 
 %files -n libAfterBase-static
@@ -404,13 +406,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/asvector
 %attr(755,root,root) %{_bindir}/asview
 %attr(755,root,root) %{_libdir}/libAfterImage.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libAfterImage.so.0
+%ghost %{_libdir}/libAfterImage.so.0
 
 %files -n libAfterImage-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/afterimage-config
 %attr(755,root,root) %{_bindir}/afterimage-libs
-%attr(755,root,root) %{_libdir}/libAfterImage.so
+%{_libdir}/libAfterImage.so
 %{_includedir}/libAfterImage
 %{_mandir}/man3/afterimage.3x*
 %{_mandir}/man3/ascmap.3x*

@@ -1,0 +1,46 @@
+--- afterstep-devel-2.2.12/libAfterConf/Feel.c.orig	2013-05-01 15:34:11.000000000 +0200
++++ afterstep-devel-2.2.12/libAfterConf/Feel.c	2025-09-29 21:51:33.654931170 +0200
+@@ -29,6 +29,7 @@
+ 
+ #include "afterconf.h"
+ 
++#include <X11/XKBlib.h>
+ 
+ flag_options_xref WindowBoxFlagsXref[] = {
+ 	{ASA_Virtual, WINDOWBOX_Virtual_ID, 0}
+--- afterstep-devel-2.2.12/src/afterstep/afterstep.c.orig	2013-05-01 15:34:11.000000000 +0200
++++ afterstep-devel-2.2.12/src/afterstep/afterstep.c	2025-09-30 05:33:44.226021526 +0200
+@@ -34,6 +34,12 @@
+ #include "../../libAfterStep/wmprops.h"
+ #include "../../libAfterStep/moveresize.h"
+ 
++/* in dbus.c */
++Bool asdbus_GetCanHibernate (void);
++Bool asdbus_GetCanSuspend (void);
++Bool asdbus_Hibernate (int timeout);
++Bool asdbus_Suspend (int timeout);
++void asdbus_UnregisterSMClient (const char *sm_client_path);
+ 
+ /**************************************************************************/
+ /* 		Global variables that defines our behaviour 		  */
+--- afterstep-devel-2.2.12/src/afterstep/events.c.orig	2013-05-01 15:34:11.000000000 +0200
++++ afterstep-devel-2.2.12/src/afterstep/events.c	2025-09-30 05:40:12.161446073 +0200
+@@ -45,6 +45,7 @@
+ #include "../../libAfterStep/wmprops.h"
+ #include "../../libAfterStep/moveresize.h"
+ 
++#include <X11/XKBlib.h>
+ #include <X11/keysym.h>
+ #ifdef XSHMIMAGE
+ # include <sys/ipc.h>
+--- afterstep-devel-2.2.12/src/afterstep/menuitem.c.orig	2013-05-01 15:34:11.000000000 +0200
++++ afterstep-devel-2.2.12/src/afterstep/menuitem.c	2025-09-30 05:42:37.348894993 +0200
+@@ -53,6 +53,8 @@
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ 
++#include <X11/XKBlib.h>
++
+ #include "dirtree.h"
+ 
+ /***************************************************************************/
