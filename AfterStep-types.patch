@@ -1,0 +1,23 @@
+--- afterstep-devel-2.2.12/libAfterBase/timer.c.orig	2013-05-01 15:34:11.000000000 +0200
++++ afterstep-devel-2.2.12/libAfterBase/timer.c	2025-09-30 17:39:28.748427833 +0200
+@@ -124,7 +124,7 @@ timer_subtract_times (time_t * sec1, tim
+ Bool timer_delay_till_next_alarm (time_t * sec, time_t * usec)
+ {
+ 	Timer        *timer;
+-	long         tsec, tusec = 0;
++	time_t       tsec, tusec = 0;
+ 
+ 	if (timer_first == NULL)
+ 		return False;
+@@ -139,9 +139,9 @@ Bool timer_delay_till_next_alarm (time_t
+ 		}
+ 
+ 	timer_get_time (sec, usec);
+-	LOCAL_DEBUG_OUT( "next :  sec = %ld, usec = %ld( curr %ld, %ld)", tsec, tusec, *sec, *usec );
++	LOCAL_DEBUG_OUT( "next :  sec = %lld, usec = %lld( curr %lld, %lld)", (long long)tsec, (long long)tusec, (long long)*sec, (long long)*usec );
+ 	timer_subtract_times (&tsec, &tusec, *sec, *usec);
+-	LOCAL_DEBUG_OUT( "waiting for sec = %ld, usec = %ld( curr %ld, %ld)", tsec, tusec, *sec, *usec );
++	LOCAL_DEBUG_OUT( "waiting for sec = %lld, usec = %lld( curr %lld, %lld)", (long long)tsec, (long long)tusec, (long long)*sec, (long long)*usec );
+ 	
+ 	*sec = tsec;
+ 	*usec = tusec;

@@ -16,7 +16,7 @@ Summary(ja.UTF-8):	AfterStep ウィンドウマネージャ (NeXT風)
 Summary(pl.UTF-8):	AfterStep - zarządca okien
 Name:		AfterStep
 Version:	%{afterstep_ver}
-Release:	4
+Release:	5
 License:	GPL v2+
 Group:		X11/Window Managers
 Source0:	ftp://ftp.afterstep.org/stable/%{name}-%{version}.tar.bz2
@@ -31,6 +31,7 @@ Patch4:		%{name}-ac.patch
 Patch5:		%{name}-inline.patch
 Patch6:		%{name}-ar.patch
 Patch7:		%{name}-includes.patch
+Patch8:		%{name}-types.patch
 URL:		http://www.afterstep.org/
 %{?with_opengl:BuildRequires:	OpenGL-devel}
 BuildRequires:	alsa-lib-devel >= 0.9
@@ -237,8 +238,7 @@ Statyczna biblioteka AfterImage.
 %patch -P5 -p1
 %patch -P6 -p1
 %patch -P7 -p1
-
-#cp -f autoconf/configure*.in .
+%patch -P8 -p1
 
 %build
 cd autoconf
